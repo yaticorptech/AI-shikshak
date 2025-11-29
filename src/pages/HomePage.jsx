@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { partnerlogin } from "../Utils/authAPI";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { partnerSchema } from "../schemas/partner.schema";
 import { useNavigate } from "react-router-dom";
@@ -33,51 +33,14 @@ const HomePage = () => {
     }
     // console.log("file:", data.File[0]);
 
-    // const res = await axios.post(
-    //   "http://192.168.0.192:443/v1/auth/save-partner",
-    //   formData,
-    //   {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //       "x-api-key": "hvyluf8760cgc57jhvb90",
-    //       "x-api-secret": "29wgo79ujk30gy53fj1",
-    //     },
-    //   }
-    // );
-
-    // console.log(res);
+    // const response = await partnerlogin(formData);
+    // console.log("Response:", response);
     navigate("/agreement", { state: data });
     reset();
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* NAVBAR */}
-      <nav className="w-full bg-white shadow-sm py-4 px-6 flex justify-between items-center fixed top-0 left-0 z-50">
-        <h1 className="text-xl font-bold text-blue-600">AI-Shikshak</h1>
-
-        <ul className="flex gap-6 text-gray-700 font-medium">
-          <li className="hover:text-blue-600 cursor-pointer">
-            <a
-              href="https://www.yaticorp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Home
-            </a>
-          </li>
-          <li className="hover:text-blue-600 cursor-pointer">
-            <a
-              href="https://www.yaticorp.com/AI-Shikshak"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              About Product
-            </a>
-          </li>
-        </ul>
-      </nav>
-
       {/* FORM CONTAINER */}
       <div className="pt-28 pb-16 px-4">
         <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg">

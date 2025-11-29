@@ -18,12 +18,20 @@ const AgreementPage = () => {
   const downloadPDF = async () => {
     const element = pdfRef.current;
 
+    // Force desktop width before capture
+    const originalWidth = element.style.width;
+    const originalTransform = element.style.transform;
+
+    element.style.width = "794px";
+    element.style.transform = "scale(1)";
+    element.style.transformOrigin = "top left";
+
     const canvas = await html2canvas(element, { scale: 2 });
 
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
 
-    const imgWidth = 210;
+    const imgWidth = 210; // A4 width in mm
     const pageHeight = 297;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
@@ -41,26 +49,31 @@ const AgreementPage = () => {
     }
 
     pdf.save(`${partner.Name}_Agreement.pdf`);
+
+    // Reset to original responsive mode
+    element.style.width = originalWidth;
+    element.style.transform = originalTransform;
   };
 
   return (
-    <div className="p-5 font-[Times_New_Roman]">
+    <div className="p-5 font-[Times_New_Roman] bg-black">
       <div
         ref={pdfRef}
         className="
-          p-10 
-          border-2 
-          border-gray-300
-          w-[794px]        
-          mx-auto 
-          bg-white 
-          font-[Times_New_Roman]
-          text-[18px]
-          leading-relaxed
-          
-        "
+      p-6
+      border-2 
+      border-gray-300
+      bg-white     
+      mx-auto 
+      font-[Times_New_Roman]
+      text-[16px]
+      leading-relaxed
+      max-w-[794px]  
+      w-full
+      mt-12
+    "
       >
-        <h1 className="text-center text-3xl mb-6">
+        <h1 className="text-center text-2xl md:text-3xl mb-6 font-bold">
           PARTNERSHIP AGREEMENT WITH NDA
         </h1>
         <p>
@@ -88,7 +101,7 @@ const AgreementPage = () => {
         </p>
         {/* SECTION 1 */}
         <h2 className="text-xl font-bold mt-6 mb-2">1. DEFINITIONS</h2>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>"Clause" means a clause of this Agreement.</li>
           <li>"Month" means an English calendar month.</li>
           <li>
@@ -111,7 +124,7 @@ const AgreementPage = () => {
           The Partner is authorised solely to market and sell AI Shikshak
           services to:
         </p>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>Schools</li>
           <li>Colleges</li>
           <li>Students</li>
@@ -122,15 +135,10 @@ const AgreementPage = () => {
           categories without prior written approval.
         </p>
         {/* SECTION 4 */}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <h2 className="text-xl font-bold mt-10 mb-2">
           4. COMMISSION & PAYMENT TERMS
         </h2>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>The Partner will receive commission as per Annexure.</li>
           <li>All customer payments must be made directly to the Company.</li>
           <li>The Partner is strictly prohibited from collecting payments.</li>
@@ -141,24 +149,25 @@ const AgreementPage = () => {
           </li>
         </ul>
         {/* SECTION 5 */}
+        <br />
+        <br />
+        <br />
         <h2 className="text-xl font-bold mt-6 mb-2">
           5. PARTNER RESPONSIBILITIES
         </h2>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>Represent AI Shikshak professionally.</li>
           <li>Use only approved marketing materials.</li>
           <li>No false promises or pricing changes.</li>
           <li>Provide regular updates on leads and sales.</li>
           <li>Follow all Company policies.</li>
         </ul>
-        {/* ------------------------------ */}
-        {/* NEW SECTIONS (6 TO 12) ADDED */}
-        {/* ------------------------------ */}
+        {/* SECTION 6 */}
         <h2 className="text-xl font-bold mt-6 mb-2">6. RESTRICTIONS</h2>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>
-            Present themselves as an employee, legal representative, or
-            authorised signatory of the Company.
+            Present themselves as an employee or legal representative of the
+            Company.
           </li>
           <li>Enter into agreements on behalf of the Company.</li>
           <li>Share confidential information or internal strategies.</li>
@@ -167,57 +176,60 @@ const AgreementPage = () => {
             approval.
           </li>
         </ul>
+        {/* SECTION 7 */}
         <h2 className="text-xl font-bold mt-6 mb-2">
           7. RELATIONSHIP OF PARTIES
         </h2>
         <p>
-          The Partner is an Independent Contractor. Nothing in this Agreement
-          creates an employer-employee or agency relationship.
+          The Partner is an Independent Contractor. No employer-employee or
+          agency relationship is created.
         </p>
+        {/* SECTION 8 */}
         <h2 className="text-xl font-bold mt-6 mb-2">8. TERM & TERMINATION</h2>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>Valid for [12 months / until terminated].</li>
           <li>Either party may terminate with [DAYS] notice.</li>
           <li>
-            Immediate termination for misconduct, breach, fraud, or violation of
-            NDA/Restrictions.
+            Immediate termination for misconduct, breach, fraud, or violation.
           </li>
           <li>Commission on verified sales up to termination will be paid.</li>
         </ul>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h2 className="text-xl font-bold mt-14 mb-2">
+        {/* SECTION 9 */}
+        <h2 className="text-xl font-bold mt-10 mb-2">
           9. NON-DISCLOSURE AGREEMENT (NDA)
         </h2>
-        <h3 className="font-bold mt-2">
+        <h3 className="font-bold mt-4">
           9.1 Definition of Confidential Information
         </h3>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>Customer databases and leads</li>
           <li>Pricing, business plans, financial details</li>
           <li>Product details, training materials</li>
           <li>Technical data and intellectual property</li>
         </ul>
-        <h3 className="font-bold mt-8">9.2 Obligations</h3>
-        <ul className="list-disc pl-6">
+        <h3 className="font-bold mt-6">9.2 Obligations</h3>
+        <ul className="list-disc pl-6 space-y-1">
           <li>Maintain strict confidentiality.</li>
           <li>Not copy, disclose, or misuse information.</li>
           <li>Return/destroy confidential material upon termination.</li>
         </ul>
-        <h3 className="font-bold mt-4">9.3 Exceptions</h3>
-        <ul className="list-disc pl-6">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h3 className="font-bold mt-6">9.3 Exceptions</h3>
+        <ul className="list-disc pl-6 space-y-1">
           <li>Information already public.</li>
           <li>Information legally obtained.</li>
         </ul>
-        <h3 className="font-bold mt-4">9.4 Penalties</h3>
-        <ul className="list-disc pl-6">
+        <h3 className="font-bold mt-6">9.4 Penalties</h3>
+        <ul className="list-disc pl-6 space-y-1">
           <li>Immediate termination.</li>
           <li>Legal action for damages.</li>
           <li>Forfeiture of unpaid commission.</li>
         </ul>
+        {/* SECTION 10 */}
         <h2 className="text-xl font-bold mt-6 mb-2">
           10. INTELLECTUAL PROPERTY
         </h2>
@@ -225,30 +237,22 @@ const AgreementPage = () => {
           All logos, content, and digital assets remain Company property and may
           not be altered or misused.
         </p>
+        {/* SECTION 11 */}
         <h2 className="text-xl font-bold mt-6 mb-2">11. JURISDICTION</h2>
-        <p>
-          All disputes shall be adjudicated in the courts of Bangalore, which
-          shall have exclusive authority.
-        </p>
+        <p>All disputes shall be adjudicated in the courts of Bangalore.</p>
+        {/* SECTION 12 */}
         <h2 className="text-xl font-bold mt-6 mb-2">12. ANNEXURE</h2>
-        <ul className="list-disc pl-6">
+        <ul className="list-disc pl-6 space-y-1">
           <li>Price Slabs</li>
-          <li>Eligibility for Commission and Commission %</li>
+          <li>Eligibility for Commission</li>
           <li>Pay Scale</li>
         </ul>
-        {/* -------------------------------- */}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h2 className="text-xl font-bold mt-14 mb-4">
+        {/* SIGNATURES */}
+        <h2 className="text-xl font-bold mt-10 mb-4">
           13. ACCEPTANCE & SIGNATURES
         </h2>
-        {/* SIGNATURE SECTION */}
-        <div className="flex justify-between mt-10">
-          {/* LEFT – First Party */}
-          <div className="w-1/2 text-left">
+        <div className="flex flex-col md:flex-row justify-between gap-8 mt-10">
+          <div className="md:w-1/2 text-left">
             <p>
               <strong>For YATICORP INDIA Pvt Ltd (First Party)</strong>
             </p>
@@ -258,8 +262,7 @@ const AgreementPage = () => {
             <p>Date: {formattedDate}</p>
           </div>
 
-          {/* RIGHT – Second Party */}
-          <div className="w-1/3 text-left">
+          <div className="md:w-1/3 text-left">
             <p>
               <strong>For Second Party</strong>
             </p>
@@ -269,29 +272,30 @@ const AgreementPage = () => {
             <p>Date: {formattedDate}</p>
           </div>
         </div>
-        {/* WITNESSES SECTION */}
-        <div className="flex justify-between mt-12">
-          {/* First Party Witness */}
-          <div className="w-1/2 text-left">
+        {/* WITNESSES */}
+        <div className="flex flex-col md:flex-row justify-between gap-8 mt-12">
+          <div className="md:w-1/2 text-left">
             <p>
               <strong>First Party Witness</strong>
             </p>
             <p>Witness Name:</p>
             <p>Address:</p>
+            <br />
             <p>Signature:</p>
           </div>
 
-          {/* Second Party Witness */}
-          <div className="w-1/3 text-left">
+          <div className="md:w-1/3 text-left">
             <p>
               <strong>Second Party Witness</strong>
             </p>
             <p>Witness Name:</p>
             <p>Address:</p>
+            <br />
             <p>Signature:</p>
           </div>
-        </div>{" "}
+        </div>
       </div>
+
       <div className="w-full flex justify-center mt-8">
         <button
           onClick={downloadPDF}
