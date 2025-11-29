@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { partnerSchema } from "../schemas/partner.schema";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +18,34 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const formSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log(data.File[0]);
+    const formData = new FormData();
+
+    // Append all text fields
+    Object.keys(data).forEach((key) => {
+      if (key !== "File") {
+        formData.append(key, data[key]);
+      }
+    });
+
+    // Append file
+    if (data.File && data.File[0]) {
+      formData.append("File", data.File[0]);
+    }
+    // console.log("file:", data.File[0]);
+
+    // const res = await axios.post(
+    //   "http://192.168.0.192:443/v1/auth/save-partner",
+    //   formData,
+    //   {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //       "x-api-key": "hvyluf8760cgc57jhvb90",
+    //       "x-api-secret": "29wgo79ujk30gy53fj1",
+    //     },
+    //   }
+    // );
+
+    // console.log(res);
     navigate("/agreement", { state: data });
     reset();
   };
@@ -133,13 +160,13 @@ const HomePage = () => {
               </label>
               <input
                 type="text"
-                {...register("WhatsappNumber")}
+                {...register("Phone")}
                 placeholder="Enter whatsapp number"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
-              {errors.WhatsappNumber && (
+              {errors.Phone && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.WhatsappNumber.message}
+                  {errors.Phone.message}
                 </p>
               )}
             </div>

@@ -11,7 +11,7 @@ export const partnerSchema = yup.object().shape({
     .required("Gender is required")
     .oneOf(["Male", "Female", "Other"], "Invalid Gender"),
   Email: yup.string().email("Invalid Email").required("Email is required"),
-  WhatsappNumber: yup
+  Phone: yup
     .string()
     .trim()
     .required("Whatsapp Number is required")
