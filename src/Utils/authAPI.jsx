@@ -13,3 +13,17 @@ export const partnerlogin = async (formData) => {
   });
   return res.data;
 };
+
+export const partnerdashboardlogin = async (id) => {
+  const response = await axios.get(
+    `${baseURL}/trainee/${id}`,
+    // { password: password },
+    {
+      headers: {
+        "x-api-key": apiKey,
+        "x-api-secret": apiSecret,
+      },
+    }
+  );
+  return response;
+};

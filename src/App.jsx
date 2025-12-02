@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import AgreementPage from "./pages/AgreementPage";
 import Navbar from "./Components/Global/Navbar";
 import Footer from "./Components/Global/Footer";
+import PartnerDashboard from "./pages/PartnerDashboard";
+import Partnerdashboardlogin from "./pages/logins/Partnerdashboardlogin";
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/agreement" element={<AgreementPage />} />
+        <Route path="/dashboard" element={<PartnerDashboard/>}/>
+        <Route path="/partnerlogin" element={<Partnerdashboardlogin/>}/>
       </Routes>
       <Footer />
     </Router>
