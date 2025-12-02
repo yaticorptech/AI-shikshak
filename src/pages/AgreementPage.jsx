@@ -56,7 +56,7 @@ const AgreementPage = () => {
   };
 
   return (
-    <div className="p-5 font-[Times_New_Roman] bg-black">
+    <div className="p-5 font-[Times_New_Roman] bg-gradient-to-b from-blue-50 to-gray-100">
       <div
         ref={pdfRef}
         className="
