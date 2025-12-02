@@ -48,77 +48,76 @@ function Partnerdashboardlogin() {
   };
 
   return (
-  <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-  <ToastContainer position="top-center" />
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <ToastContainer position="top-center" />
 
-  <form
-    onSubmit={handleSubmit}
-    className="w-full max-w-sm bg-white p-6 rounded-2xl shadow-xl"
-  >
-    {/* Title */}
-    <h2 className="text-center text-xl font-bold mb-6 text-blue-600">
-      BDE CANDIDATE LOGIN
-    </h2>
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-sm bg-white p-6 rounded-2xl shadow-xl"
+      >
+        {/* Title */}
+        <h2 className="text-center text-xl font-bold mb-6 text-blue-600">
+          PARTNER LOGIN
+        </h2>
 
-    {/* Phone Number */}
-    <div className="mb-4">
-      <label htmlFor="phone" className="font-semibold text-gray-700">
-        Enter ID
-      </label>
+        {/* Phone Number */}
+        <div className="mb-4">
+          <label htmlFor="phone" className="font-semibold text-gray-700">
+            Enter ID
+          </label>
 
-      <div className="flex items-center mt-1 bg-gray-100 rounded-lg px-3 py-2">
-        <FaPhone className="text-gray-500 text-lg" />
-        <input
-          id="phone"
-          type="text"
-          placeholder="Ex: 1001"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
-          className="flex-1 bg-transparent outline-none ml-3 text-base"
-          required
-        />
-      </div>
-    </div>
+          <div className="flex items-center mt-1 bg-gray-100 rounded-lg px-3 py-2">
+            <FaPhone className="text-gray-500 text-lg" />
+            <input
+              id="phone"
+              type="text"
+              placeholder="Ex: 1001"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              className="flex-1 bg-transparent outline-none ml-3 text-base"
+              required
+            />
+          </div>
+        </div>
 
-    {/* Password */}
-    <div className="mb-4">
-      <label htmlFor="password" className="font-semibold text-gray-700">
-        Enter Password
-      </label>
+        {/* Password */}
+        <div className="mb-4">
+          <label htmlFor="password" className="font-semibold text-gray-700">
+            Enter Password
+          </label>
 
-      <div className="flex items-center mt-1 bg-gray-100 rounded-lg px-3 py-2">
-        <FaLock className="text-gray-500 text-lg" />
+          <div className="flex items-center mt-1 bg-gray-100 rounded-lg px-3 py-2">
+            <FaLock className="text-gray-500 text-lg" />
 
-        <input
-          id="password"
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="flex-1 bg-transparent outline-none ml-3 text-base"
-          required
-        />
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="flex-1 bg-transparent outline-none ml-3 text-base"
+              required
+            />
 
-        <span
-          className="text-gray-600 text-lg cursor-pointer"
-          onClick={togglePasswordVisibility}
+            <span
+              className="text-gray-600 text-lg cursor-pointer"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+        </div>
+
+        {/* Login Button */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold text-lg mt-2 active:scale-[0.98] transition-all"
         >
-          {showPassword ? <FaEyeSlash /> : <FaEye />}
-        </span>
-      </div>
+          {loading ? "Loading..." : "Login"}
+        </button>
+      </form>
     </div>
-
-    {/* Login Button */}
-    <button
-      type="submit"
-      disabled={loading}
-      className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold text-lg mt-2 active:scale-[0.98] transition-all"
-    >
-      {loading ? "Loading..." : "Login"}
-    </button>
-  </form>
-</div>
-
   );
 }
 
