@@ -23,8 +23,7 @@ function Partnerdashboardlogin() {
     setLoading(true);
 
     try {
-      const response = await partnerdashboardlogin(number, password);
-      console.log("res", response);
+      const response = await partnerdashboardlogin(number);
 
       if (response.status === 200) {
         toast.success("Login Successful");
@@ -63,7 +62,7 @@ function Partnerdashboardlogin() {
         {/* Phone Number */}
         <div className="mb-4">
           <label htmlFor="phone" className="font-semibold text-gray-700">
-            Enter ID
+            Enter Phone
           </label>
 
           <div className="flex items-center mt-1 bg-gray-100 rounded-lg px-3 py-2">

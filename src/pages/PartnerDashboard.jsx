@@ -20,41 +20,9 @@ const PartnerDashboard = () => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const dob = myArray1?.DOB || "";
+  const dob = myArray1?.Dob || "";
   const formattedDob = dob ? dob.split("T")[0] : "";
 
-  // Fetch Updated Data --------------------------
-  const fetchData = async () => {
-    if (!myArray1?.ID) {
-      toast.warning("No user ID available to fetch data.");
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const res = await partnerdashboardlogin(myArray1.ID);
-
-      const apiData = res?.data || res;
-      const dataBlock = apiData?.data || apiData;
-
-      if (!dataBlock) {
-        toast.error("Unexpected API response");
-        setLoading(false);
-        return;
-      }
-
-      setMyArray(apiData);
-      setMyArray1(dataBlock);
-      setRecords(dataBlock.Records || []);
-
-      toast.success("Successfully refreshed data");
-      setLoading(false);
-    } catch (err) {
-      console.error("fetchData error:", err);
-      toast.error("Server error while fetching dashboard.");
-      setLoading(false);
-    }
-  };
 
   // Initialize ---------------------------------
   useEffect(() => {
@@ -100,7 +68,7 @@ const PartnerDashboard = () => {
         {/* Welcome */}
         <section className="text-center mb-6">
           <h2 className="text-3xl font-bold text-blue-600">
-            Welcome, {myArray1?.Name || "User"}
+            Welcome, {myArray1?.FirstName || "User"}
           </h2>
           <p className="text-gray-500 mt-2">
             Empower your growth using
@@ -120,19 +88,16 @@ const PartnerDashboard = () => {
                 style={{ width: 120, height: 120 }}
               >
                 <span className="text-5xl font-bold text-blue-600">
-                  {myArray1?.Name ? myArray1.Name.charAt(0).toUpperCase() : "U"}
+                  {myArray1?.FirstName
+                    ? myArray1.FirstName.charAt(0).toUpperCase()
+                    : "U"}
                 </span>
               </div>
 
               <h3 className="mt-4 text-xl font-semibold text-gray-800">
-                {myArray1?.Name || "-"}
+                {myArray1?.FirstName || "-"}
               </h3>
-              <p className="text-sm text-gray-500 mt-1">
-                ID: {myArray1?.ID || "-"}
-              </p>
-              <p className="text-sm text-gray-500">
-                Group: {myArray1?.Group || "-"}
-              </p>
+
               <p className="text-sm text-gray-500 mt-1 break-words">
                 Email: {myArray1?.Email || "-"}
               </p>
@@ -141,10 +106,10 @@ const PartnerDashboard = () => {
               <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
                 <Info label="Phone:" value={myArray1?.Phone} />
                 <Info label="Gender:" value={myArray1?.Gender} />
-                <Info label="Qualification:" value={myArray1?.Qualification} />
+                <Info label="Qualification:" value={myArray1?.Degree} />
                 <Info label="Date of Birth:" value={formattedDob} />
                 <Info label="District:" value={myArray1?.District} />
-                <Info label="Constituency:" value={myArray1?.Constituency} />
+                <Info label="Constituency:" value={myArray1?.Taluk} />
               </div>
 
               <div className="mt-5 flex gap-3">
@@ -155,13 +120,7 @@ const PartnerDashboard = () => {
                   Logout
                 </button>
 
-                <button
-                  onClick={fetchData}
-                  className="px-4 py-2 rounded-full bg-blue-600 text-white hover:brightness-95 transition"
-                  disabled={loading}
-                >
-                  {loading ? "Refreshing..." : "Refresh"}
-                </button>
+              
               </div>
             </div>
           </div>
@@ -170,7 +129,7 @@ const PartnerDashboard = () => {
         {/* Sales */}
         <section className="flex justify-center mb-8">
           <div className="w-full max-w-2xl bg-white rounded-2xl shadow-md p-6">
-            {latestRecord ? (
+            {myArray.Sold ? (
               <div className="flex items-center gap-6">
                 <div className="flex-1">
                   <p className="text-sm text-gray-600 font-semibold">
@@ -182,10 +141,7 @@ const PartnerDashboard = () => {
 
                   <div className="mt-3 flex items-baseline gap-3">
                     <span className="text-5xl font-extrabold text-gray-900">
-                      {latestRecord.total}
-                    </span>
-                    <span className="text-sm text-green-600 font-semibold">
-                      Pts
+                      {myArray.Sold}
                     </span>
                   </div>
                 </div>
@@ -198,7 +154,7 @@ const PartnerDashboard = () => {
               </div>
             ) : (
               <p className="text-center text-gray-600 font-semibold">
-                ⏳ Points yet to be given
+                ⏳ No sale recorded yet!
               </p>
             )}
           </div>

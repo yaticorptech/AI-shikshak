@@ -1,7 +1,10 @@
 import * as yup from "yup";
 
 export const partnerSchema = yup.object().shape({
-  FirstName: yup.string().required("Full Name is required").matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
+  FirstName: yup
+    .string()
+    .required("Full Name is required")
+    .matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
   Dob: yup
     .date()
     .required("Date of Birth is required")
@@ -17,9 +20,18 @@ export const partnerSchema = yup.object().shape({
     .required("Whatsapp Number is required")
     .matches(/^[0-9]{10}$/, "Whatsapp Number must be exactly 10 digits"),
   Address: yup.string().required("Address is required"),
-  Taluk: yup.string().required("Taluk is required").matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
-  District: yup.string().required("District is required").matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
-  State: yup.string().required("State is required").matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
+  Taluk: yup
+    .string()
+    .required("Taluk is required")
+    .matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
+  District: yup
+    .string()
+    .required("District is required")
+    .matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
+  State: yup
+    .string()
+    .required("State is required")
+    .matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
   Pincode: yup
     .string()
     .trim()
@@ -37,7 +49,14 @@ export const partnerSchema = yup.object().shape({
       if (!value || !value[0]) return false;
       return value[0].size <= 2 * 1024 * 1024;
     }),
-    Pan:yup.string().matches(/^[0-9]{10}$/,"Pan card number must be 10 digits"),
+  Pan: yup
+    .string()
+    .transform((value) => value?.toUpperCase())
+    .matches(
+      /^[A-Za-z\s]{5}[0-9]{4}[A-Za-z/s]$/,
+      "Please enter valid PAN number."
+    )
+    .required("PAN is required"),
   AadhaarFile: yup
     .mixed()
     .required("Aadhaar File is required")
@@ -59,13 +78,16 @@ export const partnerSchema = yup.object().shape({
     .string()
     .trim()
     .required("Aadhaar Card Number is required")
-    .matches(/^[0-9]{12}$/, "Aadhaar number must be exactly 12 digits"),
+    .matches(/^[0-9]{12}$/, "Please enter valid Aadhaar number."),
   Degree: yup.string().required("Qualification is required"),
-  Institute: yup.string().required("Institute is required").matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
+  Institute: yup
+    .string()
+    .required("Institute is required")
+    .matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
   PassingYear: yup
     .string()
     .required("Year of passing is required")
-    .matches(/^[0-9]{4}$/, "Year of passing must be 4 digits")
+    .matches(/^[0-9]{4}$/, "Please enter valid year format.")
     .test(
       "year-range",
       `Year cannot be greater than ${new Date().getFullYear()}`,
