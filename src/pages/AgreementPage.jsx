@@ -75,202 +75,278 @@ export default function AgreementPage() {
   ];
 
   return (
-    <div className="w-full bg-gray-50 py-10 px-4 mt-10">
-      <div className="max-w-6xl mx-auto space-y-10">
-        {/* Hero */}
-        <section className="bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-          <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-700">
-            Become AI Shikshak Partner
-          </h1>
-          <p className="mt-4 text-gray-700 text-lg md:text-xl text-center leading-relaxed">
-            Ready to earn big? Join the Yaticorp AI Shikshak Partner Program!
-            Introduce game-changing AI tools to schools & institutions across
-            India with unlimited earning potential.
-          </p>
-        </section>
+    <div className="w-full bg-blue-50 py-10 px-4 mt-10">
+      <section className="bg-white border border-blue-300 xl:rounded-2xl shadow-2xl max-w-7xl w-full p-8 sm:p-12 mx-auto mb-20">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-6 text-blue-900">
+          <span className="text-blue-600">Terms & Conditions</span>
+        </h2>
 
-        {/* Features */}
-        <section className="bg-white p-6 md:p-10 rounded-2xl shadow-lg space-y-6">
-          <h2 className="text-2xl font-bold text-blue-600">
-            Partnering for Educational Revolution
-          </h2>
-          <p className="text-gray-700 leading-relaxed">
-            This is more than just a partnership—it's your chance to step into
-            the future of EdTech and build significant income on your own terms!
-          </p>
+        <p className="text-center text-blue-700 mb-12 text-base sm:text-lg">
+          Yaticorp India Pvt Ltd -- AI Shikshak Partner Program
+        </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-blue-50 p-6 rounded-xl shadow">
-              <h3 className="text-xl font-semibold text-blue-700 mb-2">
-                Maximum Earnings
-              </h3>
-              <p className="text-gray-600">
-                Unlock powerful tiered commissions that reward top performers.
-              </p>
-            </div>
-
-            <div className="bg-blue-50 p-6 rounded-xl shadow">
-              <h3 className="text-xl font-semibold text-blue-700 mb-2">
-                Be Your Own Boss
-              </h3>
-              <p className="text-gray-600">
-                Work anytime as an Independent Contractor with full flexibility.
-              </p>
-            </div>
-
-            <div className="bg-blue-50 p-6 rounded-xl shadow">
-              <h3 className="text-xl font-semibold text-blue-700 mb-2">
-                High-Value Product
-              </h3>
-              <p className="text-gray-600">
-                Promote a powerful AI learning tool that schools genuinely need.
-              </p>
-            </div>
+        <div className="bg-blue-100 border border-blue-200 rounded-xl p-6 sm:p-8 space-y-6 text-blue-900 text-sm sm:text-base leading-relaxed">
+          <div>
+            <p className="font-semibold text-blue-700 text-lg mb-4">
+              Yaticorp India Pvt Ltd -- AI Shikshak Partner Program
+            </p>
+            <p className="text-sm text-blue-600 mb-6">
+              These Terms and Conditions ("T&C") govern the role,
+              responsibilities, and incentive structure for any individual or
+              entity ("Partner") who participates in the Yaticorp Business
+              Development Partner Program.
+            </p>
           </div>
-        </section>
 
-        {/* FAQ (Single Column) */}
-        <section className="bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-blue-600 mb-4">
-            Frequently Asked Questions
-          </h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                1. Role and Authorization
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>
+                  <span className="font-semibold">Purpose:</span> The Partner is
+                  authorized to promote, market, and sell AI products offered by
+                  Yaticorp.
+                </li>
+                <li>
+                  <span className="font-semibold">Authorized Market:</span>{" "}
+                  Schools, Colleges, Students, Individual learners, and
+                  Educational bodies.
+                </li>
+              </ul>
+            </div>
 
-          <div className="space-y-4">
-            {faqs.map((f, i) => (
-              <div key={i} className="border rounded-xl p-4 md:p-6 bg-gray-50">
-                <button
-                  onClick={() => setFaqOpen(faqOpen === i ? null : i)}
-                  className="w-full text-left flex items-center justify-between"
-                >
-                  <span className="font-semibold text-gray-800">
-                    {i + 1}. {f.q}
-                  </span>
-                  <span className="text-gray-500">
-                    {faqOpen === i ? "−" : "+"}
-                  </span>
-                </button>
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                2. Sales and Payment Protocol
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>
+                  <span className="font-semibold">Direct Payments:</span>{" "}
+                  Payments must be made directly to Yaticorp.
+                </li>
+                <li>
+                  <span className="font-semibold">Prohibition:</span> The
+                  Partner cannot collect any payments.
+                </li>
+                <li>
+                  <span className="font-semibold">Activation:</span> Activation
+                  begins only after full payment is verified.
+                </li>
+              </ul>
+            </div>
 
-                {faqOpen === i && <p className="text-gray-600 mt-3">{f.a}</p>}
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                3. 💰 Earning Structure (Tiered Payout)
+              </h3>
+
+              <div className="mb-4">
+                <h4 className="font-semibold text-blue-700 mb-2">
+                  3.1 Eligibility for Earning (Weekly Threshold)
+                </h4>
+                <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                  <li>
+                    Minimum of 25 verified sales/registrations per week is
+                    required.
+                  </li>
+                  <li>
+                    If threshold is met, incentives apply to all sales for that
+                    cycle.
+                  </li>
+                </ul>
               </div>
-            ))}
+
+              <div className="mb-4">
+                <h4 className="font-semibold text-blue-700 mb-2">
+                  3.2 Incentive Rate Tiers
+                </h4>
+
+                <p className="mb-3 text-blue-800">
+                  Incentive increases with higher verified sales:
+                </p>
+
+                <p className="font-semibold text-blue-900 mb-4">
+                  To qualify for any payout, a minimum of 25 weekly verified
+                  sales is essential.
+                </p>
+
+                <div className="bg-blue-100 border border-blue-200 rounded-lg p-4 mb-4">
+                  <table className="w-full text-sm text-blue-900">
+                    <thead>
+                      <tr className="border-b border-blue-300">
+                        <th className="py-2 text-left font-semibold">
+                          Total Verified Sales (in cycle)
+                        </th>
+                        <th className="py-2 text-left font-semibold">
+                          Payout Rate (Per Sale)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2 font-semibold">25 - 49</td>
+                        <td className="py-2 font-semibold">₹100</td>
+                      </tr>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2 font-semibold">50 - 99</td>
+                        <td className="py-2 font-semibold">₹125</td>
+                      </tr>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2 font-semibold">100 - 199</td>
+                        <td className="py-2 font-semibold">₹150</td>
+                      </tr>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2 font-semibold">200 - 299</td>
+                        <td className="py-2 font-semibold">₹175</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 font-semibold">300+</td>
+                        <td className="py-2 font-semibold">₹200</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <h4 className="font-semibold text-blue-700 mb-2">
+                  3.3 Illustrative Examples
+                </h4>
+
+                <div className="bg-blue-100 border border-blue-200 rounded-lg p-4">
+                  <table className="w-full text-xs sm:text-sm text-blue-900">
+                    <thead>
+                      <tr className="border-b border-blue-300">
+                        <th className="py-2 text-left font-semibold">
+                          Total Sales
+                        </th>
+                        <th className="py-2 text-left font-semibold">
+                          Threshold Met?
+                        </th>
+                        <th className="py-2 text-left font-semibold">
+                          Rate Applied
+                        </th>
+                        <th className="py-2 text-left font-semibold">
+                          Total Earnings
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2">24</td>
+                        <td className="py-2">No</td>
+                        <td className="py-2">—</td>
+                        <td className="py-2 font-semibold">₹0</td>
+                      </tr>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2">40</td>
+                        <td className="py-2">Yes</td>
+                        <td className="py-2">₹100</td>
+                        <td className="py-2 font-semibold">₹4,000</td>
+                      </tr>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2">75</td>
+                        <td className="py-2">Yes</td>
+                        <td className="py-2">₹125</td>
+                        <td className="py-2 font-semibold">₹9,375</td>
+                      </tr>
+                      <tr className="border-b border-blue-200">
+                        <td className="py-2">250</td>
+                        <td className="py-2">Yes</td>
+                        <td className="py-2">₹175</td>
+                        <td className="py-2 font-semibold">₹43,750</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2">350</td>
+                        <td className="py-2">Yes</td>
+                        <td className="py-2">₹200</td>
+                        <td className="py-2 font-semibold">₹70,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-blue-700 mb-2">
+                  3.4 Modification Clause
+                </h4>
+                <p className="text-blue-800">
+                  Yaticorp may update the payout structure with a 7-day notice.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                4. Partner Responsibilities
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>Promote ethically and professionally.</li>
+                <li>Use approved marketing content only.</li>
+                <li>No false commitments or manipulated pricing.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                5. Restrictions and Prohibitions
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>Cannot represent as employee/agent of Yaticorp.</li>
+                <li>No unauthorized commitments.</li>
+                <li>No customer payment handling.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                6. Confidentiality
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>All internal material is confidential.</li>
+                <li>Partner must not share or misuse information.</li>
+                <li>Breach leads to termination & legal consequences.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                7. Relationship Status & Termination
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>Partner works as an Independent Contractor.</li>
+                <li>Fraud or misconduct leads to termination.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-blue-900 text-xl mb-3">
+                8. General Provisions
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-blue-800">
+                <li>
+                  <span className="font-semibold">IP:</span> All assets belong
+                  to Yaticorp.
+                </li>
+                <li>
+                  <span className="font-semibold">Jurisdiction:</span> Bangalore
+                  courts only.
+                </li>
+              </ul>
+            </div>
           </div>
-        </section>
 
-        {/* Terms & Conditions (Below FAQ) */}
-        <section className="bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-blue-600 mb-4">
-            Terms & Conditions (Summary)
-          </h2>
-
-          <div className="space-y-3 text-gray-700 leading-relaxed">
-            <p>
-              <strong>1. Role and Authorization:</strong> Partners can promote
-              AI Shikshak to approved customers including schools, colleges,
-              students and institutions.
-            </p>
-            <p>
-              <strong>2. Sales and Payment:</strong> All payments must go
-              directly to Yaticorp official channels. Partners cannot collect or
-              hold payments.
-            </p>
-            <p>
-              <strong>3. Earning Structure:</strong> Tiered payouts depending on
-              total verified sales. Eligibility rules apply.
-            </p>
-            <p>
-              <strong>4. Responsibilities:</strong> Use only approved marketing
-              materials and follow official pricing.
-            </p>
-            <p>
-              <strong>5. Restrictions:</strong> Cannot collect payments or
-              provide unauthorized pricing. No competing product promotion while
-              active.
-            </p>
-            <p>
-              <strong>6. Confidentiality:</strong> Must protect internal
-              information. Breach leads to termination and potential legal
-              action.
-            </p>
-            <p>
-              <strong>7. Termination:</strong> Yaticorp may remove partners
-              violating terms; verified earnings before termination will be
-              payable.
-            </p>
-            <p className="text-sm text-gray-500">
-              Jurisdiction: Courts of Bangalore, Karnataka, India.
+          <div className="mt-8 pt-6 border-t border-blue-300">
+            <p className="text-sm text-blue-700 italic">
+              By accepting these T&C, the Partner agrees to all terms stated
+              above.
             </p>
           </div>
-        </section>
-
-        {/* Earnings Table (Below T&C) */}
-        <section className="bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">
-            Earning Structure (Tiered Payout)
-          </h3>
-
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border rounded-lg">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="px-4 py-3 text-left">
-                    Total Verified Sales (in cycle)
-                  </th>
-                  <th className="px-4 py-3 text-left">Payout Rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tiers.map((t, idx) => (
-                  <tr key={idx} className="border-t">
-                    <td className="px-4 py-3">{t.range}</td>
-                    <td className="px-4 py-3">{t.rate}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <p className="mt-3 text-sm text-gray-600">
-            Eligibility: To qualify for any sales payout in a billing cycle, the
-            Partner must achieve a minimum of 25 verified sales exclusively
-            within the first week. If eligibility is met, the incentive applies
-            to all sales in that cycle.
-          </p>
-
-          <div className="mt-4 bg-gray-50 p-4 rounded">
-            <h4 className="font-semibold">Illustrative Examples</h4>
-            <ul className="mt-2 text-gray-700 list-disc pl-5">
-              <li>24 total sales — Eligibility not met → ₹0</li>
-              <li>40 total sales — Eligible at ₹100 → ₹4,000</li>
-              <li>75 total sales — Eligible at ₹125 → ₹9,375</li>
-              <li>250 total sales — Eligible at ₹175 → ₹43,750</li>
-              <li>350 total sales — Eligible at ₹200 → ₹70,000</li>
-            </ul>
-          </div>
-
-          <p className="mt-3 text-sm text-gray-500">
-            Modification Clause: Yaticorp may modify incentive slabs with 7 days
-            written notice.
-          </p>
-        </section>
-
-        {/* CTA */}
-        <section className="bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-blue-600">
-            Ready to build your income and your legacy?
-          </h2>
-          <p className="text-gray-700 mt-2">
-            Become a partner, help students learn better, and watch your income
-            soar. There's no cap on earnings — grow with us.
-          </p>
-        </section>
-
-        <section className="text-center">
-          <p className="text-gray-600">
-            Terms & Conditions of Yaticorp India Pvt Ltd — AI Shikshak Partner
-            Program.
-          </p>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
