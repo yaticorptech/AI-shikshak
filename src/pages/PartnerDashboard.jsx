@@ -99,7 +99,8 @@ const PartnerDashboard = () => {
             <p className="py-4 px-4 font-semibold text-blue-700">
               {myArray1.Sold < 25 ? (
                 <>
-                  ⚡ You need <b>{25 - myArray1.Sold}</b> more to start earning.
+                  ⚡ You need <b>{25 - myArray1.Sold}</b> registration to start
+                  earning.
                 </>
               ) : myArray1.Sold < 50 ? (
                 <>
