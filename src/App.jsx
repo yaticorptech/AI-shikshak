@@ -8,6 +8,7 @@ import Navbar from "./Components/Global/Navbar";
 import Footer from "./Components/Global/Footer";
 import PartnerDashboard from "./pages/PartnerDashboard";
 import Partnerdashboardlogin from "./pages/logins/Partnerdashboardlogin";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/agreement" element={<AgreementPage />} />
         <Route path="/dashboard" element={<PartnerDashboard/>}/>
         <Route path="/partnerlogin" element={<Partnerdashboardlogin/>}/>
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
       <Footer />
     </Router>

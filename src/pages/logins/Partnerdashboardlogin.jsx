@@ -24,6 +24,7 @@ function Partnerdashboardlogin() {
 
     try {
       const response = await partnerdashboardlogin(number);
+      console.log(response);
 
       if (response.status === 200) {
         toast.success("Login Successful");
@@ -62,7 +63,7 @@ function Partnerdashboardlogin() {
         {/* Phone Number */}
         <div className="mb-4">
           <label htmlFor="phone" className="font-semibold text-gray-700">
-            Enter Phone
+            Enter Phone Number
           </label>
 
           <div className="flex items-center mt-1 bg-gray-100 rounded-lg px-3 py-2">
@@ -70,7 +71,7 @@ function Partnerdashboardlogin() {
             <input
               id="phone"
               type="text"
-              placeholder="Ex: 1001"
+              placeholder="Ex:1234567890"
               value={number}
               onChange={(e) => setNumber(e.target.value)}
               className="flex-1 bg-transparent outline-none ml-3 text-base"
