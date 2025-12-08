@@ -83,7 +83,7 @@ const PartnerDashboard = () => {
       )}
 
       {/* Calculator Component */}
-      <Calculator />
+      <Calculator state={myArray1.Sold}/>
 
       {/* Performance Table */}
       <div className="bg-white shadow-xl rounded-2xl border border-gray-200 mt-10 mb-40">
