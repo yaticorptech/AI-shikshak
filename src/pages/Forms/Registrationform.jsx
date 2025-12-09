@@ -103,13 +103,13 @@ const Registrationform = () => {
   };
 
   // inline style for gradient text with webkit fallback for Safari
-  const gradientStyle = {
-    backgroundImage:
-      "linear-gradient(90deg,rgb(255, 94, 0) 0%,rgb(163, 186, 215) 50%, #0A8A2A 100%)",
-    WebkitBackgroundClip: "text",
-    backgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-  };
+  // const gradientStyle = {
+  //   backgroundImage:
+  //     "linear-gradient(90deg,rgb(255, 94, 0) 0%,rgb(163, 186, 215) 50%, #0A8A2A 100%)",
+  //   WebkitBackgroundClip: "text",
+  //   backgroundClip: "text",
+  //   WebkitTextFillColor: "transparent",
+  // };
 
   return (
     <div className="bg-gradient-to-b from-blue-100 to-white-200 py-12 px-4 min-h-screen">
@@ -123,11 +123,9 @@ const Registrationform = () => {
       </div>
 
       {/* Gradient text: using inline styles ensures Safari support */}
-      <p
-        style={gradientStyle}
-        className="text-lg font-bold text-center leading-relaxed mt-4"
-      >
-        ಕೈ ಕೈ ಜೋಡಿಸಿ, AI ಕಲಿಯೋಣ; ನಾಳಿನ ಜಗತ್ತಿಗೆ KPCCಯ ಕೊಡುಗೆ
+      <p className="text-lg  text-center leading-relaxed mt-4">
+        ಕೈ ಕೈ ಜೋಡಿಸಿ, AI ಕಲಿಯೋಣ; <br />
+        ನಾಳಿನ ಜಗತ್ತಿಗೆ KPCCಯ ಕೊಡುಗೆ
       </p>
 
       {/* MAIN LAYOUT */}
