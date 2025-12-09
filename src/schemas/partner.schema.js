@@ -84,6 +84,7 @@ export const partnerSchema = yup.object().shape({
     .string()
     .required("Institute is required")
     .matches(/^[A-Za-z\s]+$/, "Numbers or special characters not allowed"),
+  ReferralId: yup.string().trim().transform((value) => value?.toUpperCase()),
   PassingYear: yup
     .string()
     .required("Year of passing is required")
