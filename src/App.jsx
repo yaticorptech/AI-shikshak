@@ -9,6 +9,8 @@ import Footer from "./Components/Global/Footer";
 import PartnerDashboard from "./pages/PartnerDashboard";
 import Partnerdashboardlogin from "./pages/logins/Partnerdashboardlogin";
 import Profile from "./pages/Profile";
+import Registrationform from "./pages/Forms/Registrationform";
+import ThankYouPage from "./pages/ThankYou";
 
 const App = () => {
   return (
@@ -17,9 +19,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/agreement" element={<AgreementPage />} />
-        <Route path="/dashboard" element={<PartnerDashboard/>}/>
-        <Route path="/partnerlogin" element={<Partnerdashboardlogin/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/dashboard" element={<PartnerDashboard />} />
+        <Route path="/partnerlogin" element={<Partnerdashboardlogin />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/register" element={<Registrationform />} />
+        <Route path="/thankyou" element={<ThankYouPage />} />
       </Routes>
       <Footer />
     </Router>
