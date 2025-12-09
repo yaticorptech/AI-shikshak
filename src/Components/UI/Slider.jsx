@@ -10,10 +10,10 @@ import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 export default function Slider() {
   const sliderImages = [
     "/images/leader1.JPG",
-    "/images/leader2.JPG",
+    "/images/leader2.jpg",
     "/images/leader3.JPG",
-    "/images/congresslogo.png",
-    "/images/leader2.JPG",
+    "/images/leader1.JPG",
+    "/images/leader2.jpg",
     "/images/leader3.JPG",
   ];
 
@@ -38,7 +38,7 @@ export default function Slider() {
         }}
         pagination={{ clickable: true }}
         modules={[EffectCoverflow, Pagination, Autoplay]}
-        className="w-[90%] sm:w-[80%] md:w-[70%]"
+        className="w-[68%] sm:w-[30%] md:w-[70%]"
       >
         {sliderImages.map((src, i) => (
           <SwiperSlide
