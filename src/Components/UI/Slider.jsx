@@ -10,10 +10,10 @@ import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 export default function Slider() {
   const sliderImages = [
     "/images/leader1.JPG",
-    "/images/leader2.jpg",
+    "/images/leader2.JPG",
     "/images/leader3.JPG",
     "/images/leader1.JPG",
-    "/images/leader2.jpg",
+    "/images/leader2.JPG",
     "/images/leader3.JPG",
   ];
 
