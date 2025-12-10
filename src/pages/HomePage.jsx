@@ -456,6 +456,19 @@ const HomePage = () => {
                       <p className="errorText">{errors.PassingYear.message}</p>
                     )}
                   </div>
+
+                  {/* Referral Code */}
+                   <div className="space-y-1">
+                    <label className="font-semibold">
+                      Referral Code
+                    </label>
+                    <input
+                      type="text"
+                      {...register("ReferralId")}
+                      className="inputBox"
+                      placeholder="Enter Referral Code"
+                    />
+                  </div>
                 </div>
               </div>
 

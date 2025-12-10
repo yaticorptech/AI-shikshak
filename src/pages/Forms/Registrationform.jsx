@@ -124,8 +124,7 @@ const Registrationform = () => {
 
       {/* Gradient text: using inline styles ensures Safari support */}
       <p className="text-lg  text-center leading-relaxed mt-4">
-        ಕೈ ಕೈ ಜೋಡಿಸಿ, AI ಕಲಿಯೋಣ; <br />
-        ನಾಳಿನ ಜಗತ್ತಿಗೆ KPCCಯ ಕೊಡುಗೆ
+        KPCC ಯ ನಡೆ – ಯುವಕರ ಕಡೆ
       </p>
 
       {/* MAIN LAYOUT */}
