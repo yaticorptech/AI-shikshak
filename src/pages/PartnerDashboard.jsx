@@ -27,7 +27,7 @@ const PartnerDashboard = () => {
   const myArray = location.state?.myArray || {};
   const myArray1 = myArray.data || {};
 
-  const [records, setRecords] = useState([]);
+  const [users, setUsers] = useState([]);
   const [referrals, setReferrals] = useState([]);
   const [totalIncentives, setTotalIncentives] = useState(0);
   const [stats, setStats] = useState({
@@ -35,7 +35,6 @@ const PartnerDashboard = () => {
     unlockedReferrals: 0,
     pendingReferrals: 0,
   });
-
   // Process referrals from API data
   const processReferrals = () => {
     if (myArray1.Referrals && myArray1.Referrals.length > 0) {
@@ -87,8 +86,10 @@ const PartnerDashboard = () => {
   };
 
   useEffect(() => {
-    if (myArray1.Records) {
-      setRecords(myArray1.Records);
+    if (myArray1.Users) {
+      setUsers(myArray1.Users);
+    } else if (myArray1.Records) {
+      setUsers(myArray1.Records);
     }
 
     if (myArray1.Referrals) {
@@ -126,9 +127,6 @@ const PartnerDashboard = () => {
     localStorage.clear();
     navigate("/");
   };
-
-  const latestRecord =
-    records && records.length > 0 ? records[records.length - 1] : null;
 
   const calculateCommission = () => {
     const sold = myArray1.Sold || 0;
@@ -501,54 +499,141 @@ const PartnerDashboard = () => {
                   <span className="mr-2">📊</span>
                   Performance Table
                 </h3>
+                <p className="text-gray-600 text-xs sm:text-sm mt-1">
+                  Student registrations and their status
+                </p>
               </div>
 
               <div className="p-4 sm:p-6">
-                {latestRecord ? (
+                {users && users.length > 0 ? (
                   <div className="overflow-x-auto -mx-2 sm:mx-0">
                     <div className="min-w-full inline-block align-middle">
                       <table className="min-w-full divide-y divide-gray-200">
                         <thead>
                           <tr className="bg-gray-50">
                             <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                              Metric
+                              Name
                             </th>
                             <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                              Value
+                              Phone No
+                            </th>
+                            <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                              Class
+                            </th>
+                            <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                              Payment Status
+                            </th>
+                            <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                              Date
                             </th>
                           </tr>
                         </thead>
 
                         <tbody className="divide-y divide-gray-200">
-                          {Object.keys(latestRecord.scores || {}).map(
-                            (key, idx) => (
-                              <tr key={idx} className="hover:bg-gray-50">
-                                <td className="px-3 py-2 sm:px-4 sm:py-3 text-sm font-semibold text-gray-800">
-                                  {key}
-                                </td>
-                                <td className="px-3 py-2 sm:px-4 sm:py-3 text-sm text-gray-700">
-                                  {latestRecord.scores[key]}
-                                </td>
-                              </tr>
-                            )
-                          )}
+                          {users.map((user, idx) => (
+                            <tr
+                              key={user._id || idx}
+                              className="hover:bg-gray-50"
+                            >
+                              <td className="px-3 py-2 sm:px-4 sm:py-3">
+                                <div className="text-sm font-semibold text-gray-800">
+                                  {user.Name || "N/A"}
+                                </div>
+                              </td>
+                              <td className="px-3 py-2 sm:px-4 sm:py-3">
+                                <div className="flex items-center text-sm text-gray-700">
+                                  <FaPhone className="mr-2 text-gray-400 text-xs" />
+                                  {user.Phone || "N/A"}
+                                </div>
+                              </td>
+                              <td className="px-3 py-2 sm:px-4 sm:py-3">
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                  {user.Class || "N/A"}
+                                </span>
+                              </td>
+                              <td className="px-3 py-2 sm:px-4 sm:py-3">
+                                <span
+                                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                    user.Status === "paid"
+                                      ? "bg-green-100 text-green-800"
+                                      : user.Status === "pending"
+                                      ? "bg-yellow-100 text-yellow-800"
+                                      : "bg-red-100 text-red-800"
+                                  }`}
+                                >
+                                  {user.Status === "paid" && (
+                                    <FaCheckCircle className="mr-1" />
+                                  )}
+                                  {user.Status
+                                    ? user.Status.charAt(0).toUpperCase() +
+                                      user.Status.slice(1)
+                                    : "N/A"}
+                                </span>
+                              </td>
+                              <td className="px-3 py-2 sm:px-4 sm:py-3">
+                                <div className="flex items-center text-sm text-gray-600">
+                                  <FaCalendarAlt className="mr-2 text-gray-400 text-xs" />
+                                  {user.createdAt
+                                    ? new Date(
+                                        user.createdAt
+                                      ).toLocaleDateString("en-IN", {
+                                        day: "numeric",
+                                        month: "short",
+                                        year: "numeric",
+                                      })
+                                    : "N/A"}
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
 
-                          <tr className="bg-gray-50">
-                            <td className="px-3 py-2 sm:px-4 sm:py-3 text-sm font-bold text-gray-900">
-                              Total
-                            </td>
-                            <td className="px-3 py-2 sm:px-4 sm:py-3 text-sm font-bold text-gray-900">
-                              {latestRecord.total}
+                      
+                        {/* Summary Row */}
+                        <tfoot className="bg-gray-50">
+                          <tr>
+                            <td
+                              colSpan="5"
+                              className="px-3 py-2 sm:px-4 sm:py-3"
+                            >
+                              <div className="flex justify-between items-center text-sm">
+                                <span className="font-semibold text-gray-700">
+                                  Total Registrations: {users.length}
+                                </span>
+                                <span className="font-semibold text-green-600">
+                                  Paid:{" "}
+                                  {
+                                    users.filter((u) => u.Status === "paid")
+                                      .length
+                                  }
+                                </span>
+                                <span className="font-semibold text-gray-600">
+                                  Pending:{" "}
+                                  {
+                                    users.filter((u) => u.Status === "pending")
+                                      .length
+                                  }
+                                </span>
+                              </div>
                             </td>
                           </tr>
-                        </tbody>
+                        </tfoot>
                       </table>
                     </div>
                   </div>
                 ) : (
-                  <p className="text-center text-gray-500 font-semibold py-8 sm:py-12">
-                    No performance records yet.
-                  </p>
+                  <div className="text-center py-8 sm:py-12">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+                      <FaChartBar className="text-xl sm:text-2xl text-gray-400" />
+                    </div>
+                    <h4 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2 sm:mb-3">
+                      No Registration Records
+                    </h4>
+                    <p className="text-gray-500 max-w-md mx-auto text-sm sm:text-base">
+                      You haven't registered any students yet. All registrations
+                      will appear here.
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
