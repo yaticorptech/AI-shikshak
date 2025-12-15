@@ -15,6 +15,7 @@ import {
   FaChartLine,
   FaIdCard,
   FaBars,
+  FaSignOutAlt,
 } from "react-icons/fa";
 import Calculator from "../Components/Global/Calculator";
 
@@ -23,7 +24,6 @@ const PartnerDashboard = () => {
   const location = useLocation();
 
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myArray = location.state?.myArray || {};
   const myArray1 = myArray.data || {};
 
@@ -35,6 +35,7 @@ const PartnerDashboard = () => {
     unlockedReferrals: 0,
     pendingReferrals: 0,
   });
+
   // Process referrals from API data
   const processReferrals = () => {
     if (myArray1.Referrals && myArray1.Referrals.length > 0) {
@@ -97,21 +98,6 @@ const PartnerDashboard = () => {
     }
   }, [myArray1]);
 
-  // Close sidebar when clicking outside on mobile
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (isSidebarOpen && window.innerWidth < 768) {
-        const sidebar = document.querySelector(".mobile-sidebar");
-        if (sidebar && !sidebar.contains(event.target)) {
-          setIsSidebarOpen(false);
-        }
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [isSidebarOpen]);
-
   const getAchievement = (sold) => {
     if (!sold || sold === 0)
       return "🌱 Every big journey starts with a small step — keep going!";
@@ -125,7 +111,7 @@ const PartnerDashboard = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/");
+    navigate("/partnerlogin");
   };
 
   const calculateCommission = () => {
@@ -220,122 +206,45 @@ const PartnerDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Fixed Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 h-16 flex items-center px-4">
-        <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
-          >
-            <FaBars className="text-xl text-gray-700" />
-          </button>
-
-          {/* Logo/Brand */}
-          <div className="flex items-center">
-            <h1 className="text-xl font-bold text-blue-600 ml-2 md:ml-0">
-              AI Shikshak
-            </h1>
-            <span className="ml-2 text-sm text-gray-500 hidden sm:inline">
-              Partner Dashboard
-            </span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={() => navigate("/profile", { state: { myArray } })}
-              className="flex items-center px-4 py-2 text-gray-700 hover:text-blue-600"
-            >
-              <FaUserCircle className="mr-2" />
-              Profile
-            </button>
-            <button
-              onClick={() => setShowLogoutConfirm(true)}
-              className="px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100"
-            >
-              Logout
-            </button>
-          </div>
-
-          {/* Mobile Profile Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => navigate("/profile", { state: { myArray } })}
-              className="p-2"
-            >
-              <FaUserCircle className="text-2xl text-blue-600" />
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Sidebar */}
-      {isSidebarOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-            onClick={() => setIsSidebarOpen(false)}
-          />
-          <div className="mobile-sidebar fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white shadow-xl z-40 md:hidden transform transition-transform duration-300">
-            <div className="p-4">
-              <div className="p-4 bg-blue-50 rounded-lg mb-4">
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                    <span className="font-bold text-blue-600">
-                      {myArray1?.FirstName?.charAt(0)?.toUpperCase() || "P"}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm truncate">
-                      {myArray1.FirstName || "Partner"}
-                    </p>
-                    <p className="text-xs text-gray-500">Partner</p>
-                  </div>
-                </div>
-              </div>
-              <button
-                onClick={() => {
-                  navigate("/profile", { state: { myArray } });
-                  setIsSidebarOpen(false);
-                }}
-                className="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mb-2"
-              >
-                <FaUserCircle className="mr-3" />
-                My Profile
-              </button>
-              <button
-                onClick={() => {
-                  setShowLogoutConfirm(true);
-                  setIsSidebarOpen(false);
-                }}
-                className="w-full flex items-center px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg"
-              >
-                <FaUserCircle className="mr-3" />
-                Logout
-              </button>
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* Main Content - Adjusted for fixed navbar */}
-      <div className="pt-16 px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 pt-20">
+      {/* Main Content */}
+      <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="py-4 md:py-6 lg:py-8">
-          {/* Header */}
+          {/* Header with Profile/Logout options */}
           <div className="mb-6 md:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
-              Welcome,{" "}
-              <span className="text-blue-600">
-                {myArray1.FirstName || "Partner"}
-              </span>
-              !
-            </h1>
-            <p className="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">
-              AI Shikshak Partner Dashboard - Track your performance and
-              earnings
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                  Welcome,{" "}
+                  <span className="text-blue-600">
+                    {myArray1.FirstName || "Partner"}
+                  </span>
+                  !
+                </h1>
+                <p className="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">
+                  AI Shikshak Partner Dashboard - Track your performance and
+                  earnings
+                </p>
+              </div>
+
+              {/* Profile and Logout Buttons */}
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={() => navigate("/profile", { state: { myArray } })}
+                  className="flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+                >
+                  <FaUserCircle className="mr-2" />
+                  Profile
+                </button>
+                <button
+                  onClick={() => setShowLogoutConfirm(true)}
+                  className="flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                >
+                  <FaSignOutAlt className="mr-2" />
+                  Logout
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Achievement Card */}
@@ -588,7 +497,6 @@ const PartnerDashboard = () => {
                           ))}
                         </tbody>
 
-                      
                         {/* Summary Row */}
                         <tfoot className="bg-gray-50">
                           <tr>
@@ -829,9 +737,6 @@ const PartnerDashboard = () => {
           </div>
         </div>
       )}
-
-      {/* Mobile Bottom Safe Area */}
-      <div className="h-4 sm:h-0"></div>
     </div>
   );
 };
