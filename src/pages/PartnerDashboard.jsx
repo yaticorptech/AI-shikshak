@@ -340,10 +340,16 @@ const PartnerDashboard = () => {
 
               {/* Earnings Card - Now takes 2 columns */}
               <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-                <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
+                <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 flex items-center">
                   <FaRupeeSign className="mr-2 text-green-600" />
                   Earnings Summary
                 </h3>
+
+                {/* Weekly Payout Info */}
+                <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-md px-3 py-2 mb-4">
+                  🎉 Exciting news: You will receive your earnings every{" "}
+                  <span className="font-semibold">Monday</span>
+                </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                   {/* Sales Commission */}
