@@ -16,13 +16,17 @@ import {
   FaIdCard,
   FaBars,
   FaSignOutAlt,
+  FaUserTie,
+  FaIdBadge,
+  FaGift,
+  FaTrophy,
 } from "react-icons/fa";
+
 import Calculator from "../Components/Global/Calculator";
 
 const PartnerDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const myArray = location.state?.myArray || {};
   const myArray1 = myArray.data || {};
@@ -173,7 +177,7 @@ const PartnerDashboard = () => {
           </span>
           {!referral.isUnlocked && referral.registrationsRemaining > 0 && (
             <span className="font-semibold text-red-500">
-              {referral.registrationsRemaining} remaining
+              {referral.registrationsRemaining} more
             </span>
           )}
           {referral.isUnlocked && (
@@ -210,7 +214,7 @@ const PartnerDashboard = () => {
       {/* Main Content */}
       <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="py-4 md:py-6 lg:py-8">
-          {/* Header with Profile/Logout options */}
+          {/* Header with Customerview/Profile/Logout options */}
           <div className="mb-6 md:mb-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
@@ -227,26 +231,42 @@ const PartnerDashboard = () => {
                 </p>
               </div>
 
-              {/* Profile and Logout Buttons */}
+              {/* Customer View, Profile and Logout Buttons */}
               <div className="flex items-center space-x-3">
+                {/* Customer View */}
+                <button
+                  onClick={() =>
+                    navigate("/customerview", { state: { myArray } })
+                  }
+                  className="flex items-center px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg 
+               hover:bg-indigo-100 transition-all duration-200 shadow-sm"
+                >
+                  <FaUserTie className="mr-2 text-lg" />
+                  Customer View
+                </button>
+
+                {/* Profile */}
                 <button
                   onClick={() => navigate("/profile", { state: { myArray } })}
-                  className="flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+                  className="flex items-center px-4 py-2 bg-emerald-50 text-emerald-700 rounded-lg 
+               hover:bg-emerald-100 transition-all duration-200 shadow-sm"
                 >
-                  <FaUserCircle className="mr-2" />
+                  <FaIdBadge className="mr-2 text-lg" />
                   Profile
                 </button>
+
+                {/* Logout */}
                 <button
                   onClick={() => setShowLogoutConfirm(true)}
-                  className="flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                  className="flex items-center px-4 py-2 bg-rose-50 text-rose-600 rounded-lg 
+               hover:bg-rose-100 transition-all duration-200 shadow-sm"
                 >
-                  <FaSignOutAlt className="mr-2" />
+                  <FaSignOutAlt className="mr-2 text-lg" />
                   Logout
                 </button>
               </div>
             </div>
           </div>
-
           {/* Achievement Card */}
           {getAchievement(myArray1.Sold) && (
             <div className="bg-gradient-to-r from-green-50 to-emerald-100 border border-green-200 p-4 md:p-5 rounded-xl mb-6 md:mb-8 text-center">
@@ -263,130 +283,170 @@ const PartnerDashboard = () => {
               </p>
             </div>
           )}
-
-          {/* 1. PROFILE + EARNINGS */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-            {/* Profile Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-              <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
-                <FaUserCircle className="mr-2 text-blue-600" />
-                Profile Overview
-              </h3>
-
-              <div className="flex flex-col items-center">
-                <div className="mb-4 md:mb-6">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 md:border-4 border-white shadow-md bg-blue-100 flex items-center justify-center">
-                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600">
-                      {myArray1?.FirstName?.charAt(0)?.toUpperCase() || "P"}
-                    </span>
-                  </div>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-1 md:mb-2 text-center">
-                  {myArray1.FirstName || "Partner"} {myArray1.Middle}{" "}
-                  {myArray1.Last}
+          {/* 1. PROFILE + EARNINGS - Improved layout */}
+          <section className="mb-6 md:mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+              {/* Profile Card - Now takes less space */}
+              <div className="lg:col-span-1 bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
+                <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
+                  <FaUserCircle className="mr-2 text-blue-600" />
+                  Profile Overview
                 </h3>
-                <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold mb-4 md:mb-6">
-                  Partner ID: {myArray1.PartnerId || "N/A"}
-                </div>
 
-                <div className="w-full space-y-3 md:space-y-4">
-                  <div className="flex items-center p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
-                      <FaEnvelope className="text-blue-600 text-sm sm:text-base" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs sm:text-sm text-gray-500">Email</p>
-                      <p className="text-gray-800 font-medium text-sm sm:text-base truncate">
-                        {myArray1.Email || "Not provided"}
-                      </p>
+                <div className="flex flex-col items-center">
+                  <div className="mb-3 md:mb-4">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white shadow-md bg-blue-100 flex items-center justify-center">
+                      <span className="text-xl sm:text-2xl font-bold text-blue-600">
+                        {myArray1?.FirstName?.charAt(0)?.toUpperCase() || "P"}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4">
-                      <FaPhone className="text-green-600 text-sm sm:text-base" />
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-1 md:mb-2 text-center">
+                    {myArray1.FirstName || "Partner"} {myArray1.Middle}{" "}
+                    {myArray1.Last}
+                  </h3>
+                  <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold mb-3 md:mb-4">
+                    Referral ID: {myArray1.PartnerId || "N/A"}
+                  </div>
+
+                  <div className="w-full space-y-3">
+                    <div className="flex items-center p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                        <FaEnvelope className="text-blue-600 text-sm" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-gray-500">Email</p>
+                        <p className="text-gray-800 font-medium text-sm truncate">
+                          {myArray1.Email || "Not provided"}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-xs sm:text-sm text-gray-500">Phone</p>
-                      <p className="text-gray-800 font-medium text-sm sm:text-base">
-                        {myArray1.Phone || "Not provided"}
-                      </p>
+
+                    <div className="flex items-center p-2 sm:p-3 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                        <FaPhone className="text-green-600 text-sm" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-500">Phone</p>
+                        <p className="text-gray-800 font-medium text-sm">
+                          {myArray1.Phone || "Not provided"}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Earnings Card */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
-              <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
-                <FaRupeeSign className="mr-2 text-green-600" />
-                Earnings Summary
-              </h3>
+              {/* Earnings Card - Now takes 2 columns */}
+              <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
+                <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
+                  <FaRupeeSign className="mr-2 text-green-600" />
+                  Earnings Summary
+                </h3>
 
-              <div className="space-y-4 md:space-y-6">
-                {/* Sales Commission */}
-                <div className="p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-100">
-                  <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center mb-2 gap-1">
-                    <span className="text-gray-700 text-sm sm:text-base">
-                      Sales Commission
-                    </span>
-                    <span className="font-semibold text-blue-600 text-sm sm:text-base">
-                      ₹{rate}/registration
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-xl sm:text-2xl font-bold text-gray-800">
-                        {sold}
-                      </p>
-                      <p className="text-xs sm:text-sm text-gray-500">
-                        Registrations
-                      </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                  {/* Sales Commission */}
+                  <div className="p-3 sm:p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <div className="flex flex-col justify-between h-full">
+                      <div className="mb-2">
+                        <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-1">
+                          <span className="text-gray-700 text-sm">
+                            Sales Commission
+                          </span>
+                          <span className="font-semibold text-blue-600 text-sm">
+                            ₹{rate}/registration
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-xl font-bold text-gray-800">
+                            {sold}
+                          </p>
+                          <p className="text-xs text-gray-500">Registrations</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xl font-bold text-blue-600">
+                            ₹{commission}
+                          </p>
+                          <p className="text-xs text-gray-500">Earnings</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-xl sm:text-2xl font-bold text-blue-600">
-                        ₹{commission}
-                      </p>
-                      <p className="text-xs sm:text-sm text-gray-500">
-                        Earnings
-                      </p>
+                  </div>
+
+                  {/* Performance Incentives */}
+                  <div className="p-3 sm:p-4 bg-purple-50 rounded-lg border border-purple-100">
+                    <div className="flex flex-col justify-between h-full">
+                      <div className="mb-2">
+                        <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-1">
+                          <span className="text-gray-700 text-sm">
+                            Performance Incentives
+                          </span>
+                          <span className="font-semibold text-purple-600 text-sm">
+                            Goodies
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-lg font-bold text-gray-800">
+                            {sold >= 25 ? "Eligible" : "Not Eligible"}
+                          </p>
+                          <p className="text-xs text-gray-500">Status</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-lg font-bold text-purple-600">
+                            {sold >= 25 ? "🎁" : "🔒"}
+                          </p>
+                          <p className="text-xs text-gray-500">Reward</p>
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                        <p className="text-xs text-purple-600">
+                          {sold >= 25
+                            ? "You've earned exclusive goodies!"
+                            : `${25 - sold} more to unlock`}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Referral Incentives */}
+                  <div className="p-3 sm:p-4 bg-green-50 rounded-lg border border-green-100">
+                    <div className="flex flex-col justify-between h-full">
+                      <div className="mb-2">
+                        <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-1">
+                          <span className="text-gray-700 text-sm">
+                            Referral Incentives
+                          </span>
+                          <span className="font-semibold text-green-600 text-sm">
+                            ₹1000 each
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-xl font-bold text-gray-800">
+                            {stats.unlockedReferrals}
+                          </p>
+                          <p className="text-xs text-gray-500">Unlocked</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xl font-bold text-green-600">
+                            ₹{totalIncentives}
+                          </p>
+                          <p className="text-xs text-gray-500">Earned</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Referral Incentives */}
-                <div className="p-3 sm:p-4 bg-green-50 rounded-lg border border-green-100">
-                  <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center mb-2 gap-1">
-                    <span className="text-gray-700 text-sm sm:text-base">
-                      Referral Incentives
-                    </span>
-                    <span className="font-semibold text-green-600 text-sm sm:text-base">
-                      ₹1000 per referral
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-xl sm:text-2xl font-bold text-gray-800">
-                        {stats.unlockedReferrals}
-                      </p>
-                      <p className="text-xs sm:text-sm text-gray-500">
-                        Unlocked
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xl sm:text-2xl font-bold text-green-600">
-                        ₹{totalIncentives}
-                      </p>
-                      <p className="text-xs sm:text-sm text-gray-500">Earned</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Total Earnings */}
-                <div className="p-4 sm:p-5 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-center">
-                  <p className="text-white font-semibold mb-1 sm:mb-2 text-sm sm:text-base">
+                {/* Total Earnings - Full width below */}
+                <div className="mt-4 md:mt-6 p-4 sm:p-5 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-center">
+                  <p className="text-white font-semibold mb-1 sm:mb-2 text-sm">
                     Total Earnings
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -399,7 +459,6 @@ const PartnerDashboard = () => {
               </div>
             </div>
           </section>
-
           {/* 2. PERFORMANCE TABLE */}
           <section className="mb-6 md:mb-8">
             <div className="w-full bg-white rounded-xl sm:rounded-2xl shadow-sm sm:shadow-md border border-gray-200">
@@ -546,13 +605,77 @@ const PartnerDashboard = () => {
               </div>
             </div>
           </section>
-
           {/* 3. INCOME CALCULATOR */}
           <section className="mb-6 md:mb-8">
             <Calculator state={myArray1.Sold} />
           </section>
 
-          {/* 4. REFERRAL SECTION */}
+          {/* 4. PERFORMANCE INCENTIVES SECTION - Simplified */}
+          <section className="mb-6 md:mb-8">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6">
+              <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-3 md:mb-4 flex items-center">
+                <FaGift className="mr-2 text-blue-600" />
+                Performance Incentives
+              </h3>
+
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 md:p-5">
+                <div className="flex items-center mb-3">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mr-3 md:mr-4">
+                    <FaTrophy className="text-white text-lg md:text-xl" />
+                  </div>
+                  <div>
+                    <h4 className="text-base md:text-lg font-bold text-blue-800">
+                      🎁 Performance Reward
+                    </h4>
+                    <p className="text-sm text-blue-600">
+                      Complete 25 registrations in 7 days to unlock
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 p-4 bg-white rounded-lg border border-blue-100 text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-blue-700 mb-2">
+                    🎁 Premium Goodies Package
+                  </div>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    Exclusive rewards for top-performing partners
+                  </p>
+                </div>
+
+                <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                  <div className="flex items-center">
+                    <FaCheckCircle className="text-blue-600" />
+                    <div className="ml-3 flex-1">
+                      <p className="text-sm text-blue-800 font-medium">
+                        {sold >= 25
+                          ? "🎉 Congratulations! You've qualified for the reward!"
+                          : `Complete ${
+                              25 - sold
+                            } more registrations to unlock goodies`}
+                      </p>
+
+                      {sold < 25 && (
+                        <div className="mt-2">
+                          <div className="flex justify-between text-xs text-blue-700 mb-1">
+                            <span>Progress: {sold}/25</span>
+                            <span>{25 - sold} left</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div
+                              className="bg-gradient-to-r from-blue-600 to-indigo-600 h-2 rounded-full transition-all duration-500"
+                              style={{ width: `${(sold / 25) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 5. REFERRAL SECTION */}
           <section className="mb-8 sm:mb-12">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-200">
@@ -641,7 +764,7 @@ const PartnerDashboard = () => {
                             Phone No
                           </th>
                           <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Progress
+                            Progress (25 needed)
                           </th>
                           <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Status
