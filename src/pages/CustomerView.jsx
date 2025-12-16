@@ -66,32 +66,32 @@ const CustomerView = () => {
       videos: [
         {
           id: "1",
-          title: "AI Shikshak Introduction",
-          youtubeId: "US1OHVs7WJ0",
+          title: "CBSE Class 10 – Social Science",
+          youtubeId: "ZhGl1IzKan4",
           duration: "2:15",
         },
         {
           id: "2",
-          title: "Getting Started with AI Shikshak",
-          youtubeId: "eF3dVbxGQY8",
+          title: "CBSE Class 10 – Science",
+          youtubeId: "Qsz7LHWpSWc",
           duration: "1:45",
         },
         {
           id: "3",
-          title: "Quick Setup Tutorial",
-          youtubeId: "dO2FNE_QXaA",
+          title: "Class 10 State Board – Maths ",
+          youtubeId: "k-JtUAg6pKI",
           duration: "0:45",
         },
         {
           id: "4",
-          title: "Features Walkthrough",
-          youtubeId: "34IjpfL0bSE",
+          title: "10th State Board Social Science",
+          youtubeId: "zEm3PV9KRtg",
           duration: "0:58",
         },
         {
           id: "5",
-          title: "Best Practices Guide",
-          youtubeId: "UTUUBCY_lEE",
+          title: "CBSE Class 10 Science",
+          youtubeId: "Pa0E4zQBuUo",
           duration: "0:52",
         },
         {
@@ -120,10 +120,8 @@ const CustomerView = () => {
       videos: [
         {
           id: "i1",
-          title: "Student Success Interviews",
-          youtubeId: "placeholder",
-          duration: "Soon",
-          comingSoon: true,
+          title: "AI Learning for SSLC, PUC & CBSE Exams",
+          youtubeId: "woZ4D3y4558",
         },
       ],
     },
@@ -135,8 +133,6 @@ const CustomerView = () => {
           id: "c1",
           title: "Grade Improvement Stories",
           youtubeId: "placeholder",
-          duration: "Soon",
-          comingSoon: true,
         },
       ],
     },
@@ -205,7 +201,7 @@ const CustomerView = () => {
       title: "2. Doubts come outside classroom hours",
       bg: "from-purple-600 to-purple-800",
       reality: {
-        title: "Most doubts come:",
+        title: "Most doubts come for Students:",
         points: [
           "Late night",
           "Early morning",
@@ -377,8 +373,6 @@ const CustomerView = () => {
       )}
 
       <div className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white overflow-hidden pt-32 pb-20">
-        
-
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -391,7 +385,7 @@ const CustomerView = () => {
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
               Why <span className="text-yellow-300">AI Shikshak</span> is
-              Essential
+              Essential For Students
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
               Solving real educational gaps with personalized, 24×7 AI-powered
@@ -430,8 +424,8 @@ const CustomerView = () => {
         {/* Introduction */}
         <div className="text-center mb-20">
           <p className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug">
-            AI Shikshak matters because it solves real gaps in today’s education
-            system — not just because it is “AI”.
+            AI Shikshak matters because it solves real gaps in today’s Education
+            System — not just because it is “AI”.
           </p>
         </div>
 
@@ -541,7 +535,7 @@ const CustomerView = () => {
                     </div>
                     <div>
                       <h3 className="text-3xl font-bold text-white mb-3">
-                        AI Shikshak Brochure
+                        AI Shikshak Brochure English
                       </h3>
                       <p className="text-blue-100 text-lg mb-3">
                         Complete guide to features & benefits

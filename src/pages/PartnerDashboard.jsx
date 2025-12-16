@@ -226,7 +226,7 @@ const PartnerDashboard = () => {
                   !
                 </h1>
                 <p className="text-gray-600 mt-1 sm:mt-2 text-sm sm:text-base">
-                  AI Shikshak Partner Dashboard - Track your performance and
+                  Yaticorp AI Shikshak Partner Dashboard - Track your performance and
                   earnings
                 </p>
               </div>
@@ -347,7 +347,7 @@ const PartnerDashboard = () => {
 
                 {/* Weekly Payout Info */}
                 <p className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-md px-3 py-2 mb-4">
-                  🎉 Exciting news: You will receive your earnings every{" "}
+                  🎉 Exciting news: You will receive your earnings Next{" "}
                   <span className="font-semibold">Monday</span>
                 </p>
 
@@ -391,14 +391,14 @@ const PartnerDashboard = () => {
                             Performance Incentives
                           </span>
                           <span className="font-semibold text-purple-600 text-sm">
-                            Goodies
+                            Suprise Gifts
                           </span>
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
                         <div>
                           <p className="text-lg font-bold text-gray-800">
-                            {sold >= 25 ? "Eligible" : "Not Eligible"}
+                            {sold >= 25 ? "Eligible" : "In Progress"}
                           </p>
                           <p className="text-xs text-gray-500">Status</p>
                         </div>
@@ -412,7 +412,7 @@ const PartnerDashboard = () => {
                       <div className="mt-2">
                         <p className="text-xs text-purple-600">
                           {sold >= 25
-                            ? "You've earned exclusive goodies!"
+                            ? "You've earned exclusive Suprise Gifts!"
                             : `${25 - sold} more to unlock`}
                         </p>
                       </div>
@@ -641,7 +641,7 @@ const PartnerDashboard = () => {
 
                 <div className="mt-4 p-4 bg-white rounded-lg border border-blue-100 text-center">
                   <div className="text-2xl md:text-3xl font-bold text-blue-700 mb-2">
-                    🎁 Premium Goodies Package
+                    🎁 Premium Suprise Gifts Package
                   </div>
                   <p className="text-gray-600 text-sm md:text-base">
                     Exclusive rewards for top-performing partners
@@ -657,7 +657,7 @@ const PartnerDashboard = () => {
                           ? "🎉 Congratulations! You've qualified for the reward!"
                           : `Complete ${
                               25 - sold
-                            } more registrations to unlock goodies`}
+                            } more registrations to unlock Suprise Gifts`}
                       </p>
 
                       {sold < 25 && (
