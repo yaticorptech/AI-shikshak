@@ -23,15 +23,15 @@ import {
   Award,
   Home,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CustomerView = () => {
   const [activeVideoCategory, setActiveVideoCategory] = useState("how-to-use");
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [downloadStatus, setDownloadStatus] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const [myArray, setMyArray] = useState(location.state?.myArray || {});
-  console.log("myArray in CustomerView:", myArray);
 
   const handleShareVideo = (video) => {
     const videoUrl = `https://youtu.be/${video.youtubeId}`;
@@ -60,7 +60,7 @@ const CustomerView = () => {
   };
 
   const handleGoToDashboard = () => {
-    navigate("/dashboard");
+    navigate("/dashboard", { state: { myArray } });
   };
 
   const videoCategories = {
@@ -394,7 +394,7 @@ const CustomerView = () => {
         ></div>
 
         {/* Home Icon Button */}
-        <div className="absolute top-16 right-6 z-10">
+        <div className="absolute top-20 right-6 z-10">
           <button
             onClick={handleGoToDashboard}
             className="flex items-center justify-center p-3 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl group"
