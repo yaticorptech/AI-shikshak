@@ -21,8 +21,8 @@ import {
   Sparkles,
   Users,
   Award,
+  Home,
 } from "lucide-react";
-import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const CustomerView = () => {
@@ -59,6 +59,10 @@ const CustomerView = () => {
     setTimeout(() => setDownloadStatus(null), 3000);
   };
 
+  const handleGoToDashboard = () => {
+    navigate("/dashboard");
+  };
+
   const videoCategories = {
     "how-to-use": {
       title: "How to Use AI Shikshak",
@@ -68,49 +72,56 @@ const CustomerView = () => {
           id: "1",
           title: "CBSE Class 10 – Social Science",
           youtubeId: "ZhGl1IzKan4",
-          duration: "2:15",
         },
         {
           id: "2",
           title: "CBSE Class 10 – Science",
           youtubeId: "Qsz7LHWpSWc",
-          duration: "1:45",
         },
         {
           id: "3",
           title: "Class 10 State Board – Maths ",
           youtubeId: "k-JtUAg6pKI",
-          duration: "0:45",
         },
         {
           id: "4",
           title: "10th State Board Social Science",
           youtubeId: "zEm3PV9KRtg",
-          duration: "0:58",
         },
         {
           id: "5",
           title: "CBSE Class 10 Science",
           youtubeId: "Pa0E4zQBuUo",
-          duration: "0:52",
         },
         {
           id: "6",
-          title: "WhatsApp Integration Demo",
-          youtubeId: "US1OHVs7WJ0",
-          duration: "1:30",
+          title: "10th CBSE Social Science",
+          youtubeId: "LIeObLOzxhY",
         },
         {
           id: "7",
-          title: "Doubt Solving Made Easy",
-          youtubeId: "eF3dVbxGQY8",
-          duration: "1:20",
+          title: "MCQ Questions ",
+          youtubeId: "XC2hn660Q44",
         },
         {
           id: "8",
-          title: "Study Planner Tutorial",
+          title: "Short Queries",
+          youtubeId: "ppHdzPk7g8E",
+        },
+        {
+          id: "9",
+          title: "Image Explanations",
+          youtubeId: "4dUzCvUN6o4",
+        },
+        {
+          id: "10",
+          title: "Translation Tutorial",
           youtubeId: "dO2FNE_QXaA",
-          duration: "1:15",
+        },
+        {
+          id: "11",
+          title: "2nd PUC Maths ",
+          youtubeId: "XooK-5yakqU",
         },
       ],
     },
@@ -131,7 +142,7 @@ const CustomerView = () => {
       videos: [
         {
           id: "c1",
-          title: "Grade Improvement Stories",
+          title: "",
           youtubeId: "placeholder",
         },
       ],
@@ -283,7 +294,7 @@ const CustomerView = () => {
           "Revision",
           "Practice",
           "Exam guidance",
-          "At a much lower cost than tuition",
+          "All this at an affordable price — ₹888 for classes 5–10, ₹999 for PUC",
         ],
       },
     },
@@ -381,6 +392,18 @@ const CustomerView = () => {
             backgroundSize: "20px 20px",
           }}
         ></div>
+
+        {/* Home Icon Button */}
+        <div className="absolute top-16 right-6 z-10">
+          <button
+            onClick={handleGoToDashboard}
+            className="flex items-center justify-center p-3 bg-white/20 backdrop-blur-md rounded-full hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl group"
+            title="Go to Dashboard"
+          >
+            <Home className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+          </button>
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
@@ -401,31 +424,14 @@ const CustomerView = () => {
           <div className="relative">
             <div className="absolute -inset-6 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl rounded-full"></div>
             <div className="relative"></div>
-            <style jsx>{`
-              .animate-gradient {
-                background-size: 200% 200%;
-                animation: gradient 3s ease infinite;
-              }
-              @keyframes gradient {
-                0% {
-                  background-position: 0% 50%;
-                }
-                50% {
-                  background-position: 100% 50%;
-                }
-                100% {
-                  background-position: 0% 50%;
-                }
-              }
-            `}</style>
           </div>
         </div>
 
         {/* Introduction */}
         <div className="text-center mb-20">
           <p className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug">
-            AI Shikshak matters because it solves real gaps in today’s Education
-            System — not just because it is “AI”.
+            AI Shikshak matters because it solves real gaps in today's Education
+            System — not just because it is "AI".
           </p>
         </div>
 

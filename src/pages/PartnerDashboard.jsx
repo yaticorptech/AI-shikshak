@@ -641,7 +641,7 @@ const PartnerDashboard = () => {
 
                 <div className="mt-4 p-4 bg-white rounded-lg border border-blue-100 text-center">
                   <div className="text-2xl md:text-3xl font-bold text-blue-700 mb-2">
-                    🎁 Premium Suprise Gifts Package
+                    🎁 Premium Suprise Gifts 
                   </div>
                   <p className="text-gray-600 text-sm md:text-base">
                     Exclusive rewards for top-performing partners
