@@ -13,6 +13,7 @@ import {
   Video,
   Headphones,
   Star,
+  MessageSquare,
   Brain,
   Globe,
   X,
@@ -22,6 +23,12 @@ import {
   Users,
   Award,
   Home,
+  CreditCard,
+  Smartphone,
+  Wallet,
+  QrCode,
+  Banknote,
+  SmartphoneCharging,
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -144,6 +151,22 @@ const CustomerView = () => {
           id: "c1",
           title: "",
           youtubeId: "placeholder",
+        },
+      ],
+    },
+    "feedback-reviews": {
+      title: "User Feedback & Reviews",
+      icon: <MessageSquare className="w-5 h-5" />,
+      videos: [
+        {
+          id: "f1",
+          title: "User Review",
+          youtubeId: "skh8AiH9mhw",
+        },
+        {
+          id: "f2",
+          title: "User Review",
+          youtubeId: "WDmtKLFLwHo",
         },
       ],
     },
@@ -329,6 +352,32 @@ const CustomerView = () => {
     },
   ];
 
+  // Registration Video
+  const registrationVideo = {
+    title: "Registration Process Video",
+    description: "Watch how easy it is to register for AI Shikshak",
+    youtubeId: "ujNQqVXl8yw",
+    duration: "2:45",
+  };
+
+  // Payment Videos
+  const paymentVideos = [
+    {
+      id: "upi",
+      title: "UPI Payment Method",
+      youtubeId: "dF1Zm6OwA6I", // Replace with actual UPI video ID
+      icon: <Smartphone className="w-6 h-6" />,
+      color: "from-blue-500 to-indigo-600",
+    },
+    {
+      id: "cash",
+      title: "Cash Payment Method",
+      youtubeId: "uviqWbqxRBY", // Replace with actual cash payment video ID
+      icon: <Banknote className="w-6 h-6" />,
+      color: "from-green-500 to-emerald-600",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50">
       {selectedVideo && (
@@ -419,7 +468,7 @@ const CustomerView = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Main Statement - Simplified and more attractive */}
+        {/* Main Statement */}
         <div className="text-center mb-16">
           <div className="relative">
             <div className="absolute -inset-6 bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-3xl rounded-full"></div>
@@ -435,7 +484,7 @@ const CustomerView = () => {
           </p>
         </div>
 
-        {/* Full Content Sections - Exact as shared */}
+        {/* Full Content Sections */}
         <div className="space-y-12 mb-20">
           {contentSections.map((section, index) => (
             <div
@@ -564,6 +613,69 @@ const CustomerView = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+
+        {/* Payment Methods Videos */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-blue-800 mb-4">
+              Registration Payment Methods
+            </h2>
+            <p className="text-gray-600 text-xl mb-2">
+              Watch tutorials for both payment options
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {paymentVideos.map((video) => (
+              <div
+                key={video.id}
+                className="group bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-200 hover:border-blue-400 hover:shadow-2xl transition-all transform hover:-translate-y-1"
+              >
+                <div className={`h-2 bg-gradient-to-r ${video.color}`}></div>
+                <div className="p-6">
+                  <div className="flex items-center mb-6">
+                    <div
+                      className={`p-3 bg-gradient-to-r ${video.color} text-white rounded-xl mr-4`}
+                    >
+                      {video.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-800">
+                      {video.title}
+                    </h3>
+                  </div>
+
+                  <div
+                    className="relative aspect-video cursor-pointer mb-6"
+                    onClick={() => setSelectedVideo(video)}
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                      alt={video.title}
+                      className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="bg-blue-600 p-4 rounded-full shadow-lg">
+                        <Play className="w-8 h-8 text-white" fill="white" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 mb-6">{video.description}</p>
+
+                  <button
+                    onClick={() => setSelectedVideo(video)}
+                    className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg"
+                  >
+                    <Play className="inline mr-3 w-5 h-5" />
+                    Watch {video.id === "upi" ? "UPI" : "Cash"} Registration Payment Tutorial
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
