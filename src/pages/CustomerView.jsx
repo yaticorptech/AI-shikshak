@@ -141,6 +141,11 @@ const CustomerView = () => {
           title: "AI Learning for SSLC, PUC & CBSE Exams",
           youtubeId: "woZ4D3y4558",
         },
+        {
+          id: "i2",
+          title: "AI ಶಿಕ್ಷಕ್‌ನಲ್ಲಿ ಲಭ್ಯವಿರುವ ವೈಶಿಷ್ಟ್ಯಗಳು ಯಾವುವು?",
+          youtubeId: "4buMNmcMfCw",
+        },
       ],
     },
     "case-studies": {
@@ -372,7 +377,7 @@ const CustomerView = () => {
     {
       id: "cash",
       title: "Cash Payment Method",
-      youtubeId: "uviqWbqxRBY", // Replace with actual cash payment video ID
+      youtubeId: "a9mZIrvfCt4", // Replace with actual cash payment video ID
       icon: <Banknote className="w-6 h-6" />,
       color: "from-green-500 to-emerald-600",
     },
@@ -647,7 +652,6 @@ const CustomerView = () => {
                 </div>
               </div>
             </div>
-
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -745,7 +749,7 @@ const CustomerView = () => {
                   <p className="text-blue-100 text-lg">
                     {activeVideoCategory === "how-to-use"
                       ? "Step-by-step tutorials to get started"
-                      : "Coming soon - Stay tuned for updates"}
+                      : ""}
                   </p>
                 </div>
                 <Film className="w-16 h-16 opacity-30" />
