@@ -616,7 +616,6 @@ const CustomerView = () => {
           </div>
         </div>
 
-
         {/* Payment Methods Videos */}
         <div className="mb-20">
           <div className="text-center mb-12">
@@ -626,7 +625,29 @@ const CustomerView = () => {
             <p className="text-gray-600 text-xl mb-2">
               Watch tutorials for both payment options
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full"></div>
+            <div className="flex justify-center items-center gap-4 mb-8 group cursor-pointer">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-2xl shadow-xl transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-2xl">
+                <div className="flex items-center gap-4">
+                  <div className="bg-white p-2 rounded-full">
+                    <svg
+                      className="w-6 h-6 text-blue-600 animate-pulse"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-lg font-medium">
+                      Registration Assistance
+                    </p>
+                    <p className="text-2xl font-bold">9108131162</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -671,7 +692,8 @@ const CustomerView = () => {
                     className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg"
                   >
                     <Play className="inline mr-3 w-5 h-5" />
-                    Watch {video.id === "upi" ? "UPI" : "Cash"} Registration Payment Tutorial
+                    Watch {video.id === "upi" ? "UPI" : "Cash"} Registration
+                    Payment Tutorial
                   </button>
                 </div>
               </div>
