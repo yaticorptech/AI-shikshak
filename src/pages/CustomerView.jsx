@@ -185,12 +185,12 @@ const CustomerView = () => {
       videos: [
         {
           id: "f1",
-          title: "User Review",
+          title: "A School Principal Reviews AI Shikshak for CBSE Board Readiness",
           youtubeId: "skh8AiH9mhw",
         },
         {
           id: "f2",
-          title: "User Review",
+          title: "A Class 10 Student’s AI Shikshak Experience",
           youtubeId: "WDmtKLFLwHo",
         },
       ],
