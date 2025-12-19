@@ -132,22 +132,42 @@ const CustomerView = () => {
         },
       ],
     },
-    interview: {
-      title: "Interviews",
-      icon: <Users className="w-5 h-5" />,
-      videos: [
-        {
-          id: "i1",
-          title: "AI Learning for SSLC, PUC & CBSE Exams",
-          youtubeId: "woZ4D3y4558",
-        },
-        {
-          id: "i2",
-          title: "AI ಶಿಕ್ಷಕ್‌ನಲ್ಲಿ ಲಭ್ಯವಿರುವ ವೈಶಿಷ್ಟ್ಯಗಳು ಯಾವುವು?",
-          youtubeId: "4buMNmcMfCw",
-        },
-      ],
-    },
+    "interviews-media": {
+    title: "Interviews & Media Features",
+    icon: <Users className="w-5 h-5" />,
+    videos: [
+      {
+        id: "i1",
+        title: "AI Learning for SSLC, PUC & CBSE Exams",
+        youtubeId: "woZ4D3y4558",
+        type: "interview"
+      },
+      {
+        id: "i2",
+        title: "AI ಶಿಕ್ಷಕ್‌ನಲ್ಲಿ ಲಭ್ಯವಿರುವ ವೈಶಿಷ್ಟ್ಯಗಳು ಯಾವುವು?",
+        youtubeId: "4buMNmcMfCw",
+        type: "interview"
+      },
+      {
+        id: "m1",
+        title: "Top Rank in Board Exams with AI Shikshak",
+        youtubeId: "US1OHVs7WJ0", // Replace with actual
+        type: "media"
+      },
+      {
+        id: "m2",
+        title: "24x7 teacher for students AI Shikshak-Daijiworld Television",
+        youtubeId: "Hc-91sLmHa8", // Replace with actual
+        type: "media"
+      },
+      {
+        id: "m3",
+        title: "Exam Success Guaranteed with AI Shikshak",
+        youtubeId: "eF3dVbxGQY8", // Replace with actual
+        type: "media"
+      },
+    ],
+  },
     "case-studies": {
       title: "Case Studies",
       icon: <Award className="w-5 h-5" />,
@@ -643,12 +663,13 @@ const CustomerView = () => {
                       <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
                     </svg>
                   </div>
-                  <div>
-                    <p className="text-lg font-medium">
-                      Registration Assistance
-                    </p>
-                    <p className="text-2xl font-bold">9108131162</p>
-                  </div>
+                 
+                    <div>
+                      <p className="text-lg font-medium">
+                        Registration Assistance
+                      </p>
+                      <p className="text-2xl font-bold">9108131162</p>
+                    </div>
                 </div>
               </div>
             </div>
