@@ -41,13 +41,14 @@ const PartnerDashboard = () => {
   });
 
   // Process referrals from API data
+  // Process referrals from API data
   const processReferrals = () => {
     if (myArray1.Referrals && myArray1.Referrals.length > 0) {
       const processedReferrals = myArray1.Referrals.map((referral) => {
         const registrationsDone = referral.Sold || 0;
         const registrationsRemaining =
-          registrationsDone >= 25 ? 0 : Math.max(0, 25 - registrationsDone);
-        const isUnlocked = registrationsDone >= 25;
+          registrationsDone >= 10 ? 0 : Math.max(0, 10 - registrationsDone);
+        const isUnlocked = registrationsDone >= 10;
         const incentiveEarned = isUnlocked ? 1000 : 0;
 
         return {
@@ -109,7 +110,7 @@ const PartnerDashboard = () => {
     if (sold >= 200) return "🔥 You've reached ₹175 per registration!";
     if (sold >= 100) return "🚀 You've reached ₹150 per registration!";
     if (sold >= 50) return "💥 You've reached ₹125 per registration!";
-    if (sold >= 25) return "⭐ You're now eligible for ₹100 per registration!";
+    if (sold >= 10) return "⭐ You're now eligible for ₹100 per registration!";
     return null;
   };
 
@@ -126,7 +127,7 @@ const PartnerDashboard = () => {
     else if (sold >= 200) rate = 175;
     else if (sold >= 100) rate = 150;
     else if (sold >= 50) rate = 125;
-    else if (sold >= 25) rate = 100;
+    else if (sold >= 10) rate = 100;
 
     return { sold, rate, commission: sold * rate };
   };
@@ -163,10 +164,10 @@ const PartnerDashboard = () => {
   };
 
   const renderRegistrationProgress = (referral) => {
-    const percentage = Math.min((referral.registrationsDone / 25) * 100, 100);
+    const percentage = Math.min((referral.registrationsDone / 10) * 100, 100);
     const registrationsText =
-      referral.registrationsDone >= 25
-        ? "25+ done"
+      referral.registrationsDone >= 10
+        ? "10+ done"
         : `${referral.registrationsDone} done`;
 
     return (
@@ -267,6 +268,7 @@ const PartnerDashboard = () => {
               </div>
             </div>
           </div>
+          {/* Achievement Card */}
           {/* Achievement Card */}
           {getAchievement(myArray1.Sold) && (
             <div className="bg-gradient-to-r from-green-50 to-emerald-100 border border-green-200 p-4 md:p-5 rounded-xl mb-6 md:mb-8 text-center">
@@ -398,22 +400,22 @@ const PartnerDashboard = () => {
                       <div className="flex justify-between items-center">
                         <div>
                           <p className="text-lg font-bold text-gray-800">
-                            {sold >= 25 ? "Eligible" : "In Progress"}
+                            {sold >= 10 ? "Eligible" : "In Progress"}
                           </p>
                           <p className="text-xs text-gray-500">Status</p>
                         </div>
                         <div className="text-right">
                           <p className="text-lg font-bold text-purple-600">
-                            {sold >= 25 ? "🎁" : "🔒"}
+                            {sold >= 10 ? "🎁" : "🔒"}
                           </p>
                           <p className="text-xs text-gray-500">Reward</p>
                         </div>
                       </div>
                       <div className="mt-2">
                         <p className="text-xs text-purple-600">
-                          {sold >= 25
+                          {sold >= 10
                             ? "You've earned exclusive Suprise Gifts!"
-                            : `${25 - sold} more to unlock`}
+                            : `${10 - sold} more to unlock`}
                         </p>
                       </div>
                     </div>
@@ -634,7 +636,7 @@ const PartnerDashboard = () => {
                       🎁 Performance Reward
                     </h4>
                     <p className="text-sm text-blue-600">
-                      Complete 25 registrations in 7 days to unlock
+                      Complete 10 registrations in 7 days to unlock
                     </p>
                   </div>
                 </div>
@@ -653,23 +655,23 @@ const PartnerDashboard = () => {
                     <FaCheckCircle className="text-blue-600" />
                     <div className="ml-3 flex-1">
                       <p className="text-sm text-blue-800 font-medium">
-                        {sold >= 25
+                        {sold >= 10
                           ? "🎉 Congratulations! You've qualified for the reward!"
                           : `Complete ${
-                              25 - sold
+                              10 - sold
                             } more registrations to unlock Suprise Gifts`}
                       </p>
 
-                      {sold < 25 && (
+                      {sold < 10 && (
                         <div className="mt-2">
                           <div className="flex justify-between text-xs text-blue-700 mb-1">
-                            <span>Progress: {sold}/25</span>
-                            <span>{25 - sold} left</span>
+                            <span>Progress: {sold}/10</span>
+                            <span>{10 - sold} left</span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-gradient-to-r from-blue-600 to-indigo-600 h-2 rounded-full transition-all duration-500"
-                              style={{ width: `${(sold / 25) * 100}%` }}
+                              style={{ width: `${(sold / 10) * 100}%` }}
                             ></div>
                           </div>
                         </div>
@@ -706,6 +708,7 @@ const PartnerDashboard = () => {
 
               <div className="p-4 sm:p-6">
                 {/* Info Card */}
+                {/* Info Card */}
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
                   <div className="flex items-start">
                     <div className="flex-shrink-0 mt-1">
@@ -716,7 +719,7 @@ const PartnerDashboard = () => {
                         Incentive Information
                       </h4>
                       <p className="text-yellow-700 text-xs sm:text-sm mt-1">
-                        Once your partner completes 25 registrations, your
+                        Once your partner completes 10 registrations, your
                         incentives will be unlocked and you'll earn ₹1000.
                       </p>
                     </div>
@@ -770,7 +773,7 @@ const PartnerDashboard = () => {
                             Phone No
                           </th>
                           <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                            Progress (25 needed)
+                            Progress (10 needed)
                           </th>
                           <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                             Status

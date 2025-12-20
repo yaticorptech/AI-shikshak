@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 
 function Calculator({ state = 0 }) {
-  const [registrations, setRegistrations] = useState(state);
+  const [expectedRegistrations, setExpectedRegistrations] = useState(state);
+  const [verifiedRegistrations, setVerifiedRegistrations] = useState(state);
 
   // Helper: Calculate earnings based on registration count
   const calculateEarnings = (count) => {
-    if (count < 25) return 0;
-    if (count < 50) return count * 100;
-    if (count < 100) return count * 125;
-    if (count < 200) return count * 150;
-    if (count < 300) return count * 175;
-    return count * 200;
+    if (count < 10) return 0;
+    return count * 200; // Flat ₹200 per registration after 10
   };
 
   // Helper: Determine next milestone for progress bar
   const getNextMilestone = (count) => {
+    if (count < 10) return 10;
     if (count < 25) return 25;
     if (count < 50) return 50;
     if (count < 100) return 100;
@@ -25,26 +23,14 @@ function Calculator({ state = 0 }) {
 
   // Helper: Get progress message
   const getNextLevelMessage = (count) => {
-    if (count < 25) return `You need ${25 - count} more to start earning.`;
-    if (count < 50)
-      return `Just ${50 - count} more to reach ₹125/registration!`;
-    if (count < 100)
-      return `Only ${100 - count} more to reach ₹150/registration!`;
-    if (count < 200)
-      return `Just ${200 - count} more to reach ₹175/registration!`;
-    if (count < 300)
-      return `Only ${300 - count} more to reach ₹200/registration!`;
-    return `🎉 Maximum rate achieved! Keep earning at ₹200/registration!`;
+    if (count < 10) return `You need ${10 - count} more to start earning ₹200 each.`;
+    if (count < 25) return `Just ${25 - count} more to unlock Amazon Voucher!`;
+    if (count < 50) return `Only ${50 - count} more to unlock Backpack!`;
+    if (count < 100) return `Just ${100 - count} more to unlock 3 Branded Perfumes!`;
+    if (count < 200) return `Only ${200 - count} more to unlock Tablet!`;
+    if (count < 300) return `Only ${300 - count} more to unlock Laptop!`;
+    return `🎉 All goodies unlocked! Keep earning at ₹200/registration!`;
   };
-
-  // Slabs data
-  const slabs = [
-    { range: "25 - 49", rate: 100 },
-    { range: "50 - 99", rate: 125 },
-    { range: "100 - 199", rate: 150 },
-    { range: "200 - 299", rate: 175 },
-    { range: "300+", rate: 200 },
-  ];
 
   return (
     <section className="bg-white border border-blue-200 rounded-xl shadow-xl max-w-6xl w-full p-4 sm:p-6 lg:p-10 mx-auto my-6 sm:my-10">
@@ -69,10 +55,12 @@ function Calculator({ state = 0 }) {
                   type="number"
                   min="0"
                   max="500"
-                  value={registrations}
-                  onChange={(e) =>
-                    setRegistrations(parseInt(e.target.value) || 0)
-                  }
+                  value={expectedRegistrations}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value) || 0;
+                    setExpectedRegistrations(value);
+                    setVerifiedRegistrations(value);
+                  }}
                   className="w-32 sm:w-40 px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-white text-blue-900 border-2 border-blue-500 text-center text-xl sm:text-2xl font-bold focus:outline-none focus:ring-4 focus:ring-blue-200"
                 />
               </div>
@@ -85,10 +73,10 @@ function Calculator({ state = 0 }) {
                   Your Estimated Earnings
                 </p>
 
-                {registrations < 25 ? (
+                {verifiedRegistrations < 10 ? (
                   <div>
                     <p className="text-orange-500 text-4xl sm:text-5xl font-extrabold">
-                      {25 - registrations}
+                      {10 - verifiedRegistrations}
                     </p>
                     <p className="text-orange-400 text-xs mt-1">
                       more registrations needed
@@ -98,7 +86,7 @@ function Calculator({ state = 0 }) {
                   <div>
                     <p className="text-green-600 text-4xl sm:text-5xl font-extrabold">
                       ₹
-                      {calculateEarnings(registrations).toLocaleString("en-IN")}
+                      {calculateEarnings(verifiedRegistrations).toLocaleString("en-IN")}
                     </p>
                     <p className="text-green-500 text-xs mt-1">
                       You are qualified for payout
@@ -117,10 +105,12 @@ function Calculator({ state = 0 }) {
                   type="range"
                   min="0"
                   max="500"
-                  value={registrations}
-                  onChange={(e) =>
-                    setRegistrations(parseInt(e.target.value) || 0)
-                  }
+                  value={verifiedRegistrations}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value) || 0;
+                    setVerifiedRegistrations(value);
+                    setExpectedRegistrations(value);
+                  }}
                   className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer"
                 />
 
@@ -129,10 +119,12 @@ function Calculator({ state = 0 }) {
                     type="number"
                     min="0"
                     max="500"
-                    value={registrations}
-                    onChange={(e) =>
-                      setRegistrations(parseInt(e.target.value) || 0)
-                    }
+                    value={verifiedRegistrations}
+                    onChange={(e) => {
+                      const value = parseInt(e.target.value) || 0;
+                      setVerifiedRegistrations(value);
+                      setExpectedRegistrations(value);
+                    }}
                     className="w-24 sm:w-28 px-3 py-2 rounded-lg bg-blue-50 border border-blue-300 text-blue-900 text-center"
                   />
                   <span className="text-xs text-blue-600">
@@ -147,7 +139,7 @@ function Calculator({ state = 0 }) {
                   ⚡ Get to Next Level!
                 </p>
                 <p className="text-sm text-blue-700 mb-2">
-                  {getNextLevelMessage(registrations)}
+                  {getNextLevelMessage(verifiedRegistrations)}
                 </p>
 
                 {/* Progress Bar */}
@@ -157,7 +149,7 @@ function Calculator({ state = 0 }) {
                     style={{
                       width: `${Math.min(
                         100,
-                        (registrations / getNextMilestone(registrations)) * 100
+                        (verifiedRegistrations / getNextMilestone(verifiedRegistrations)) * 100
                       )}%`,
                     }}
                   ></div>
@@ -170,46 +162,134 @@ function Calculator({ state = 0 }) {
         {/* RIGHT SECTION */}
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 sm:p-6">
           <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-blue-800">
-            💰 Remuneration Slabs
+            💰 Goodies & Earnings
           </h3>
 
           <div className="space-y-3">
-            {slabs.map((slab, i) => {
-              let [min, max] = slab.range.includes("+")
-                ? [parseInt(slab.range), Infinity]
-                : slab.range.split(" - ").map(Number);
-              const active = registrations >= min && registrations <= max;
-
-              const earnings =
-                max === Infinity
-                  ? "₹60,000+"
-                  : `₹${(min * slab.rate).toLocaleString()} - ₹${(
-                      max * slab.rate
-                    ).toLocaleString()}`;
-
-              return (
-                <div
-                  key={i}
-                  className={`p-4 rounded-lg border ${
-                    active
-                      ? "bg-blue-100 border-blue-400"
-                      : "border-blue-200 bg-white"
-                  }`}
-                >
-                  <div className="flex justify-between items-center flex-wrap gap-2">
-                    <div>
-                      <p className="text-blue-800 font-semibold">
-                        {slab.range} registrations
-                      </p>
-                      <p className="text-blue-600 text-xs">{earnings}</p>
-                    </div>
-                    <span className="text-blue-700 font-bold text-sm sm:text-base">
-                      ₹{slab.rate}/registration
-                    </span>
-                  </div>
+            {/* 25-49 registrations - Amazon Voucher */}
+            <div
+              className={`p-4 rounded-lg border ${
+                verifiedRegistrations >= 25 && verifiedRegistrations <= 49
+                  ? "bg-blue-100 border-blue-400"
+                  : "border-blue-200 bg-white"
+              }`}
+            >
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <p className="text-blue-800 font-semibold">
+                    25 - 49 registrations
+                  </p>
+                  <p className="text-blue-600 text-xs">
+                    Earnings: ₹5,000 - ₹9,800
+                  </p>
                 </div>
-              );
-            })}
+                <div className="text-right">
+                  <span className="text-blue-700 font-bold text-sm sm:text-base">
+                    🎁 Amazon Voucher
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 50-99 registrations - Backpack */}
+            <div
+              className={`p-4 rounded-lg border ${
+                verifiedRegistrations >= 50 && verifiedRegistrations <= 99
+                  ? "bg-blue-100 border-blue-400"
+                  : "border-blue-200 bg-white"
+              }`}
+            >
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <p className="text-blue-800 font-semibold">
+                    50 - 99 registrations
+                  </p>
+                  <p className="text-blue-600 text-xs">
+                    Earnings: ₹10,000 - ₹19,800
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-blue-700 font-bold text-sm sm:text-base">
+                    🎒 Backpack
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 100-199 registrations - 3 Perfumes */}
+            <div
+              className={`p-4 rounded-lg border ${
+                verifiedRegistrations >= 100 && verifiedRegistrations <= 199
+                  ? "bg-blue-100 border-blue-400"
+                  : "border-blue-200 bg-white"
+              }`}
+            >
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <p className="text-blue-800 font-semibold">
+                    100 - 199 registrations
+                  </p>
+                  <p className="text-blue-600 text-xs">
+                    Earnings: ₹20,000 - ₹39,800
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-blue-700 font-bold text-sm sm:text-base">
+                    💎 3 Perfumes
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 200-299 registrations - Tablet */}
+            <div
+              className={`p-4 rounded-lg border ${
+                verifiedRegistrations >= 200 && verifiedRegistrations <= 299
+                  ? "bg-blue-100 border-blue-400"
+                  : "border-blue-200 bg-white"
+              }`}
+            >
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <p className="text-blue-800 font-semibold">
+                    200 - 299 registrations
+                  </p>
+                  <p className="text-blue-600 text-xs">
+                    Earnings: ₹40,000 - ₹59,800
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-blue-700 font-bold text-sm sm:text-base">
+                    📱 Tablet
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 300+ registrations - Laptop */}
+            <div
+              className={`p-4 rounded-lg border ${
+                verifiedRegistrations >= 300
+                  ? "bg-blue-100 border-blue-400"
+                  : "border-blue-200 bg-white"
+              }`}
+            >
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <div>
+                  <p className="text-blue-800 font-semibold">
+                    300+ registrations
+                  </p>
+                  <p className="text-blue-600 text-xs">
+                    Earnings: ₹60,000+
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-blue-700 font-bold text-sm sm:text-base">
+                    💻 Laptop
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
