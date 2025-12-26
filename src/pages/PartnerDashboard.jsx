@@ -269,7 +269,6 @@ const PartnerDashboard = () => {
             </div>
           </div>
           {/* Achievement Card */}
-          {/* Achievement Card */}
           {getAchievement(myArray1.Sold) && (
             <div className="bg-gradient-to-r from-green-50 to-emerald-100 border border-green-200 p-4 md:p-5 rounded-xl mb-6 md:mb-8 text-center">
               <div className="flex items-center justify-center mb-2">
